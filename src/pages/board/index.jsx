@@ -1,49 +1,47 @@
 import { useState } from "react";
 import { HiPlus } from "react-icons/hi";
+
 import BoardPost from "../../components/base/board/BoardPost.jsx";
 import BoardForm from "../../components/base/board/BoardForm.jsx";
 
-
 const Board = () => {
-
     const [isCreating, setIsCreating] = useState(false);
 
     const [posts, setPosts] = useState([
         {
             id: 1,
             author: "Mehri",
-            date: "2 saat əvvəl",
+            date: "2 saat önce",
             content:
-                "Bu kitabın sonunu həqiqətən gözləmirdim. Son bölümdəki hadisələr bütün hekayəyə başqa tərəfdən baxmağıma səbəb oldu.",
+                "Bu kitabın sonunu gerçekten beklemiyordum. Son bölümdeki olaylar, tüm hikâyeye farklı bir açıdan bakmama neden oldu.",
             likes: 12,
             comments: 4,
         },
         {
             id: 2,
             author: "Okur",
-            date: "Dünən",
+            date: "Dün",
             content:
-                "Sizcə əsas obrazın son qərarı doğru idi? Məncə başqa bir seçim edə bilərdi.",
+                "Sizce ana karakterin son kararı doğru muydu? Bence başka bir seçim yapabilirdi.",
             likes: 8,
             comments: 2,
         },
         {
             id: 3,
             author: "Aysel",
-            date: "3 gün əvvəl",
+            date: "3 gün önce",
             content:
-                "Bu kitab haqqında ən çox xoşuma gələn şey obrazların çox real hiss olunmasıdır.",
+                "Bu kitapta en çok hoşuma giden şey, karakterlerin çok gerçek hissettirmesi.",
             likes: 19,
             comments: 6,
         },
     ]);
 
     const handleCreate = (content) => {
-
         const newPost = {
             id: Date.now(),
             author: "Mehri",
-            date: "İndi",
+            date: "Şimdi",
             content,
             likes: 0,
             comments: 0,
@@ -99,7 +97,7 @@ const Board = () => {
                             tracking-[0.3em]
                             text-header-accent
                         ">
-                            Oxucu icması
+                            Okur topluluğu
                         </p>
 
                         <h1 className="
@@ -118,18 +116,16 @@ const Board = () => {
                             leading-7
                             text-shadow-white/40
                         ">
-                            Kitablar haqqında düşüncələrini,
-                            tənqidlərini, nəzəriyyələrini və
-                            hisslərini digər oxucularla paylaş.
+                            Kitaplar hakkındaki düşüncelerini,
+                            eleştirilerini, teorilerini ve
+                            hislerini diğer okurlarla paylaş.
                         </p>
 
                     </div>
 
                     <button
                         type="button"
-                        onClick={() =>
-                            setIsCreating(true)
-                        }
+                        onClick={() => setIsCreating(true)}
                         className="
                             flex
                             shrink-0
@@ -191,7 +187,7 @@ const Board = () => {
                                 text-sm
                                 text-shadow-white/30
                             ">
-                                Henüz bir paylaşım yoxdur.
+                                Henüz bir paylaşım yok.
                             </p>
                         </div>
                     )}

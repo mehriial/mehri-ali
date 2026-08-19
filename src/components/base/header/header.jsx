@@ -17,7 +17,7 @@ const navigation = [
     { name: "Ana sayfa", href: "/" },
     { name: "Kitaplar", href: "/books" },
     { name: "Pano", href: "/board" },
-    { name: "Notlar", href: "/notes" },
+    // { name: "Notlar", href: "/notes" },
     { name: "Duyurular", href: "/announcements" },
     { name: "İletişim", href: "/contact" },
 ];

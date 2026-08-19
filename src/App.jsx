@@ -11,6 +11,16 @@ import Announcements from "./pages/announcements/index.jsx";
 import Contact from "./pages/contact/index.jsx";
 import AdminLayout from "./pages/admin/AdminLayout.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminBooks from "./pages/admin/AdminBooks.jsx";
+import AdminBookForm from "./pages/admin/AdminBookForm.jsx";
+import Chapters from "./pages/admin/Chapters.jsx";
+import Comments from "./pages/admin/Comments.jsx";
+import AdminAnnouncements from "./pages/admin/Announcements.jsx";
+import AdminBoard from "./pages/admin/Board.jsx";
+import AdminNotes from "./pages/admin/Notes.jsx";
+import AdminContact from "./pages/admin/Contact.jsx";
+import Settings from "./pages/admin/Settings.jsx";
+import ChapterForm from "./pages/admin/ChapterForm.jsx";
 
 
 
@@ -41,13 +51,27 @@ function App() {
             <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
 
-                {/*<Route path="books" element={<AdminBooks />} />*/}
-                {/*<Route path="chapters" element={<AdminChapters />} />*/}
-                {/*<Route path="comments" element={<AdminComments />} />*/}
-                {/*<Route path="board" element={<AdminBoard />} />*/}
-                {/*<Route path="announcements" element={<AdminAnnouncements />} />*/}
-                {/*<Route path="messages" element={<AdminMessages />} />*/}
-                {/*<Route path="settings" element={<AdminSettings />} />*/}
+                <Route path="books" element={<AdminBooks />} />
+                <Route path="books/create" element={<AdminBookForm />} />
+                <Route path="books/:id/edit" element={<AdminBookForm />} />
+
+                <Route path="/admin/chapters" element={<Chapters />} />
+                <Route path="/admin/comments" element={<Comments />} />
+                <Route path="/admin/board" element={<AdminBoard />} />
+                <Route path="/admin/notes" element={<AdminNotes />} />
+                <Route path="/admin/announcements" element={<AdminAnnouncements />} />
+                <Route path="/admin/contact" element={<AdminContact />} />
+
+                <Route
+                    path="/admin/chapters/create"
+                    element={<ChapterForm />}
+                />
+
+                <Route
+                    path="/admin/chapters/:id/edit"
+                    element={<ChapterForm />}
+                />
+                <Route path="/admin/settings" element={<Settings />} />
             </Route>
         </Routes>
     );

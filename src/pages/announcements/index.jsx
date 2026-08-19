@@ -3,24 +3,24 @@ import AnnouncementCard from "../../components/base/announcements/AnnouncementCa
 const announcements = [
     {
         id: 1,
-        date: "19 Avqust 2026",
-        title: "Yeni kitab əlavə edildi",
+        date: "19 Ağustos 2026",
+        title: "Yeni kitap eklendi",
         content:
-            "Kitabxanamıza yeni bir əsər əlavə edildi. Artıq kitabı oxuya və bölümlər haqqında fikirlərini paylaşa bilərsiniz.",
+            "Kütüphanemize yeni bir eser eklendi. Artık kitabı okuyabilir ve bölümler hakkında düşüncelerinizi paylaşabilirsiniz.",
     },
     {
         id: 2,
-        date: "15 Avqust 2026",
-        title: "Oxucu panosu istifadəyə verildi",
+        date: "15 Ağustos 2026",
+        title: "Okur panosu kullanıma açıldı",
         content:
-            "Artıq oxuduğunuz kitablar haqqında fikirlərinizi digər oxucularla paylaşa bilərsiniz.",
+            "Artık okuduğunuz kitaplar hakkındaki düşüncelerinizi diğer okurlarla paylaşabilirsiniz.",
     },
     {
         id: 3,
-        date: "10 Avqust 2026",
-        title: "Oxuma ayarları yeniləndi",
+        date: "10 Ağustos 2026",
+        title: "Okuma ayarları güncellendi",
         content:
-            "Reader səhifəsinə yeni font ölçüsü və font ailəsi seçimləri əlavə edildi.",
+            "Okuma sayfasına yeni yazı boyutu ve yazı tipi seçenekleri eklendi.",
     },
 ];
 
@@ -55,7 +55,7 @@ const Announcements = () => {
                         tracking-[0.3em]
                         text-header-accent
                     ">
-                        Xəbərlər
+                        Haberler
                     </p>
 
                     <h1 className="
@@ -74,9 +74,9 @@ const Announcements = () => {
                         leading-7
                         text-shadow-white/40
                     ">
-                        Kitabxana və platformadakı
-                        yeniliklərdən burada xəbərdar
-                        ola bilərsiniz.
+                        Kütüphane ve platformdaki
+                        yeniliklerden burada haberdar
+                        olabilirsiniz.
                     </p>
 
                 </header>

@@ -70,3 +70,33 @@
     @apply min-h-svh w-full;
   }
 }
+
+@layer components {
+  .adminInput {
+    @apply h-12 w-full border border-white/10 bg-white/[0.02] px-4 text-sm text-white outline-none transition-colors placeholder:text-shadow-white/20 focus:border-header-accent;
+  }
+
+  .adminTextarea {
+    @apply w-full resize-none border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-7 text-white outline-none placeholder:text-shadow-white/20 focus:border-header-accent;
+  }
+
+  .sectionLabel {
+    @apply text-[9px] uppercase tracking-[0.3em] text-header-accent;
+  }
+
+  .fieldLabel {
+    @apply mb-2 block text-[9px] uppercase tracking-[0.2em] text-shadow-white/40;
+  }
+
+  .iconButton {
+    @apply flex h-9 w-9 items-center justify-center border border-white/10 text-shadow-white/40 transition-colors hover:border-header-accent hover:text-header-accent;
+  }
+
+  .actionButton {
+    @apply flex h-9 w-9 items-center justify-center border border-white/10 text-shadow-white/50 transition-colors hover:border-header-accent hover:text-header-accent;
+  }
+
+  .primaryButton {
+    @apply inline-flex items-center justify-center gap-2 border border-header-accent px-5 py-3 text-[9px] uppercase tracking-[0.2em] text-header-accent transition-all hover:bg-header-accent hover:text-white;
+  }
+}
