@@ -9,17 +9,41 @@ import {
 import {
     FaXTwitter,
 } from "react-icons/fa6";
-import { Link, useLocation } from "react-router-dom";
+import {
+    Link,
+    useLocation,
+} from "react-router-dom";
 
 import MobileMenuSheet from "./mobile-menu.jsx";
+import LoginModal from "../auth/LoginModal.jsx";
+import RegisterModal from "../auth/RegisterModal.jsx";
+import Button from "../../ui/Button.jsx";
 
 const navigation = [
-    { name: "Ana sayfa", href: "/" },
-    { name: "Kitaplar", href: "/books" },
-    { name: "Pano", href: "/board" },
-    // { name: "Notlar", href: "/notes" },
-    { name: "Duyurular", href: "/announcements" },
-    { name: "İletişim", href: "/contact" },
+    {
+        name: "Ana sayfa",
+        href: "/",
+    },
+    {
+        name: "Kitaplar",
+        href: "/books",
+    },
+    {
+        name: "Pano",
+        href: "/board",
+    },
+    // {
+    //     name: "Notlar",
+    //     href: "/notes",
+    // },
+    {
+        name: "Duyurular",
+        href: "/announcements",
+    },
+    {
+        name: "İletişim",
+        href: "/contact",
+    },
 ];
 
 const socialLinks = [
@@ -41,43 +65,134 @@ const socialLinks = [
 ];
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+
+    const [isMenuOpen, setIsMenuOpen] =
+        useState(false);
+
+    const [isScrolled, setIsScrolled] =
+        useState(false);
+
+    const [isLoginOpen, setIsLoginOpen] =
+        useState(false);
+
+    const [isRegisterOpen, setIsRegisterOpen] =
+        useState(false);
 
     const location = useLocation();
 
+    /*
+     * Scroll
+     */
+
     useEffect(() => {
+
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            setIsScrolled(
+                window.scrollY > 20
+            );
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener(
+            "scroll",
+            handleScroll
+        );
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener(
+                "scroll",
+                handleScroll
+            );
         };
+
     }, []);
 
+    /*
+     * Mobile menu açıkken
+     * body scroll'u kapat
+     */
+
     useEffect(() => {
-        document.body.style.overflow = isMenuOpen
-            ? "hidden"
-            : "";
+
+        document.body.style.overflow =
+            isMenuOpen ||
+            isLoginOpen ||
+            isRegisterOpen
+                ? "hidden"
+                : "";
 
         return () => {
             document.body.style.overflow = "";
         };
-    }, [isMenuOpen]);
+
+    }, [
+        isMenuOpen,
+        isLoginOpen,
+        isRegisterOpen,
+    ]);
+
+    /*
+     * Active navigation
+     */
 
     const isActive = (href) => {
+
         if (href === "/") {
             return location.pathname === "/";
         }
 
-        return location.pathname.startsWith(href);
+        return location.pathname.startsWith(
+            href
+        );
+    };
+
+    /*
+     * Login aç
+     */
+
+    const openLogin = () => {
+        setIsRegisterOpen(false);
+        setIsLoginOpen(true);
+    };
+
+    /*
+     * Register aç
+     */
+
+    const openRegister = () => {
+        setIsLoginOpen(false);
+        setIsRegisterOpen(true);
+    };
+
+    /*
+     * Login -> Register
+     */
+
+    const switchToRegister = () => {
+        setIsLoginOpen(false);
+
+        setTimeout(() => {
+            setIsRegisterOpen(true);
+        }, 150);
+    };
+
+    /*
+     * Register -> Login
+     */
+
+    const switchToLogin = () => {
+        setIsRegisterOpen(false);
+
+        setTimeout(() => {
+            setIsLoginOpen(true);
+        }, 150);
     };
 
     return (
         <>
+            {/* =====================================================
+                HEADER
+            ===================================================== */}
+
             <header
                 className={`
                     fixed
@@ -87,10 +202,18 @@ const Header = () => {
                     w-full
                     transition-all
                     duration-500
+
                     ${
                     isScrolled
-                        ? "border-b border-white/10 bg-background/80 backdrop-blur-xl"
-                        : "bg-transparent"
+                        ? `
+                                border-b
+                                border-white/10
+                                bg-background/80
+                                backdrop-blur-xl
+                            `
+                        : `
+                                bg-transparent
+                            `
                 }
                 `}
             >
@@ -107,9 +230,9 @@ const Header = () => {
                     lg:px-10
                 ">
 
-                    {/* =====================================
+                    {/* =================================================
                         DESKTOP NAVIGATION
-                    ===================================== */}
+                    ================================================= */}
 
                     <nav className="
                         hidden
@@ -120,7 +243,8 @@ const Header = () => {
 
                         {navigation.map((item) => {
 
-                            const active = isActive(item.href);
+                            const active =
+                                isActive(item.href);
 
                             return (
                                 <Link
@@ -136,13 +260,18 @@ const Header = () => {
                                         tracking-[0.18em]
                                         transition-colors
                                         duration-300
+
                                         ${
                                         active
                                             ? "text-header-accent"
-                                            : "text-shadow-white hover:text-header-accent"
+                                            : `
+                                                    text-shadow-white
+                                                    hover:text-header-accent
+                                                `
                                     }
                                     `}
                                 >
+
                                     {item.name}
 
                                     <span
@@ -155,6 +284,7 @@ const Header = () => {
                                             bg-header-accent
                                             transition-all
                                             duration-300
+
                                             ${
                                             active
                                                 ? "w-full"
@@ -162,6 +292,7 @@ const Header = () => {
                                         }
                                         `}
                                     />
+
                                 </Link>
                             );
                         })}
@@ -169,109 +300,199 @@ const Header = () => {
                     </nav>
 
 
-                    {/* =====================================
-                        SOCIAL MEDIA
-                    ===================================== */}
+                    {/* =================================================
+                        DESKTOP RIGHT SIDE
+                    ================================================= */}
 
                     <div className="
                         absolute
                         right-6
                         hidden
                         items-center
-                        gap-4
+                        gap-5
                         lg:flex
                     ">
 
-                        {socialLinks.map((social) => {
+                        {/* =============================================
+                            AUTH
+                        ============================================= */}
 
-                            const Icon = social.icon;
+                        <div className="
+                            flex
+                            items-center
+                            gap-3
+                            border-r
+                            border-white/10
+                            pr-5
+                        ">
 
-                            return (
-                                <a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={social.name}
-                                    title={social.name}
-                                    className="
-                                        flex
-                                        h-8
-                                        w-8
-                                        items-center
-                                        justify-center
-                                        text-shadow-white/60
-                                        transition-all
-                                        duration-300
-                                        hover:-translate-y-0.5
-                                        hover:text-header-accent
-                                    "
-                                >
-                                    <Icon className="h-[17px] w-[17px]" />
-                                </a>
-                            );
-                        })}
+                            {/* LOGIN */}
+
+                            <Button
+                                type="button"
+                                onClick={openLogin}
+                                className="
+                                border-none
+                                    text-[10px]
+                                    uppercase
+                                    tracking-[0.15em]
+                                    text-shadow-white/60
+                                    transition-colors
+                                    duration-300
+                                    hover:text-header-accent
+                                "
+                            >
+                                Giriş
+                            </Button>
+
+
+                            {/* REGISTER */}
+
+                            <Button
+                                type="button"
+                                onClick={openRegister}
+                                className="
+                                    border
+                                    border-header-accent
+                                    px-3
+                                    py-2
+                                    text-[9px]
+                                    uppercase
+                                    tracking-[0.15em]
+                                    text-header-accent
+                                    transition-all
+                                    duration-300
+                                    hover:bg-header-accent
+                                    hover:text-white
+                                "
+                            >
+                                Kayıt ol
+                            </Button>
+
+                        </div>
+
+
+                        {/* =============================================
+                            SOCIAL MEDIA
+                        ============================================= */}
+
+                        <div className="
+                            flex
+                            items-center
+                            gap-2
+                        ">
+
+                            {socialLinks.map(
+                                (social) => {
+
+                                    const Icon =
+                                        social.icon;
+
+                                    return (
+                                        <a
+                                            key={social.name}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={social.name}
+                                            title={social.name}
+                                            className="
+                                                flex
+                                                h-8
+                                                w-8
+                                                items-center
+                                                justify-center
+                                                text-shadow-white/60
+                                                transition-all
+                                                duration-300
+                                                hover:-translate-y-0.5
+                                                hover:text-header-accent
+                                            "
+                                        >
+
+                                            <Icon className="
+                                                h-[17px]
+                                                w-[17px]
+                                            " />
+
+                                        </a>
+                                    );
+                                }
+                            )}
+
+                        </div>
 
                     </div>
 
 
-                    {/* =====================================
-                        MOBILE
-                    ===================================== */}
+                    {/* =================================================
+                        MOBILE RIGHT SIDE
+                    ================================================= */}
 
                     <div className="
                         absolute
                         right-6
                         flex
                         items-center
-                        gap-4
+                        gap-3
                         md:hidden
                     ">
 
-                        {/* Mobile social icons */}
+                        {/* MOBILE SOCIAL */}
 
                         <div className="
                             flex
                             items-center
-                            gap-3
+                            gap-1
                         ">
 
-                            {socialLinks.slice(0, 2).map((social) => {
+                            {socialLinks
+                                .slice(0, 2)
+                                .map((social) => {
 
-                                const Icon = social.icon;
+                                    const Icon =
+                                        social.icon;
 
-                                return (
-                                    <a
-                                        key={social.name}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={social.name}
-                                        className="
-                                            flex
-                                            h-8
-                                            w-8
-                                            items-center
-                                            justify-center
-                                            text-shadow-white
-                                            transition-colors
-                                            duration-300
-                                            hover:text-header-accent
-                                        "
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                    </a>
-                                );
-                            })}
+                                    return (
+                                        <a
+                                            key={social.name}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={social.name}
+                                            title={social.name}
+                                            className="
+                                                flex
+                                                h-8
+                                                w-8
+                                                items-center
+                                                justify-center
+                                                text-shadow-white
+                                                transition-colors
+                                                duration-300
+                                                hover:text-header-accent
+                                            "
+                                        >
+
+                                            <Icon className="
+                                                h-4
+                                                w-4
+                                            " />
+
+                                        </a>
+                                    );
+                                })}
 
                         </div>
 
 
-                        {/* Menu */}
+                        {/* MOBILE MENU */}
 
                         <button
                             type="button"
-                            onClick={() => setIsMenuOpen(true)}
+                            onClick={() =>
+                                setIsMenuOpen(true)
+                            }
                             className="
                                 flex
                                 h-8
@@ -284,8 +505,14 @@ const Header = () => {
                                 hover:text-header-accent
                             "
                             aria-label="Menüyü aç"
+                            title="Menüyü aç"
                         >
-                            <HiMenu className="h-5 w-5" />
+
+                            <HiMenu className="
+                                h-5
+                                w-5
+                            " />
+
                         </button>
 
                     </div>
@@ -295,15 +522,56 @@ const Header = () => {
             </header>
 
 
-            {/* =====================================
+            {/* =====================================================
                 MOBILE MENU
-            ===================================== */}
+            ===================================================== */}
 
             <MobileMenuSheet
                 isOpen={isMenuOpen}
-                onClose={() => setIsMenuOpen(false)}
+                onClose={() =>
+                    setIsMenuOpen(false)
+                }
                 navigation={navigation}
+                onLogin={() => {
+                    setIsMenuOpen(false);
+                    openLogin();
+                }}
+                onRegister={() => {
+                    setIsMenuOpen(false);
+                    openRegister();
+                }}
             />
+
+
+            {/* =====================================================
+                LOGIN MODAL
+            ===================================================== */}
+
+            <LoginModal
+                isOpen={isLoginOpen}
+                onClose={() =>
+                    setIsLoginOpen(false)
+                }
+                onRegister={
+                    switchToRegister
+                }
+            />
+
+
+            {/* =====================================================
+                REGISTER MODAL
+            ===================================================== */}
+
+            <RegisterModal
+                isOpen={isRegisterOpen}
+                onClose={() =>
+                    setIsRegisterOpen(false)
+                }
+                onLogin={
+                    switchToLogin
+                }
+            />
+
         </>
     );
 };

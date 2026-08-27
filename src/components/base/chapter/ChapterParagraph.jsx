@@ -4,7 +4,6 @@ import { HiX, HiPaperAirplane } from "react-icons/hi";
 const ChapterParagraph = ({
                               paragraph,
                               index,
-                              chapter,
                           }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [comment, setComment] = useState("");

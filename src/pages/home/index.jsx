@@ -4,9 +4,17 @@ import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { books } from "../../consts/index.js";
 
 const getRandomBooks = (items, count) => {
-    return [...items]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, count);
+    const shuffled = [...items];
+
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[randomIndex]] = [
+            shuffled[randomIndex],
+            shuffled[index],
+        ];
+    }
+
+    return shuffled.slice(0, count);
 };
 
 const Home = () => {
@@ -30,19 +38,23 @@ const Home = () => {
     return (
         <div className="min-h-screen bg-background text-shadow-white">
             {/* BOOK CAROUSEL */}
-            <section className="border-t border-white/10">
+            <section className="relative overflow-hidden border-t border-white/10">
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-header-accent/[0.07] to-transparent" />
                 <div className="mx-auto max-w-[1400px] p-6 lg:px-10">
 
                     {/* Section heading */}
-                    <div className="mb-14 flex items-end justify-between">
+                    <div className="relative mb-14 flex items-end justify-between">
                         <div>
                             <p className="text-[10px] font-medium uppercase tracking-[0.35em] text-header-accent">
                                 Kitaplarım
                             </p>
 
-                            <h2 className="mt-4 font-heading text-4xl font-normal tracking-tight sm:text-5xl">
+                            <h1 className="mt-4 font-heading text-4xl font-normal tracking-tight sm:text-5xl">
                                 Hikâyeler
-                            </h2>
+                            </h1>
+                            <p className="mt-4 max-w-md text-sm leading-7 text-shadow-white/45">
+                                Her sayfada başka bir iz, her karakterde yeni bir dünya.
+                            </p>
                         </div>
 
                         {/* Controls */}
@@ -57,6 +69,7 @@ const Home = () => {
                                     transition-all duration-300
                                     hover:border-header-accent
                                     hover:text-header-accent
+                                    focus-visible:outline-offset-4
                                 "
                                 aria-label="Önceki kitap"
                             >
@@ -73,6 +86,7 @@ const Home = () => {
                                     transition-all duration-300
                                     hover:border-header-accent
                                     hover:text-header-accent
+                                    focus-visible:outline-offset-4
                                 "
                                 aria-label="Sonraki kitap"
                             >
@@ -82,7 +96,7 @@ const Home = () => {
                     </div>
 
                     {/* Carousel */}
-                    <div className="relative overflow-hidden">
+                    <div className="relative overflow-hidden rounded-sm border border-white/5 bg-white/[0.015] p-5 sm:p-8 lg:p-10">
                         <div
                             key={activeBook.id}
                             className="
@@ -95,12 +109,13 @@ const Home = () => {
                         >
                             {/* COVER */}
                             <div className="relative mx-auto w-full max-w-[380px]">
-                                <div className="absolute -right-4 -top-4 h-full w-full border border-header-accent/20" />
+                                <div className="absolute -right-4 -top-4 h-full w-full border border-header-accent/30" />
 
                                 <div className="relative aspect-[3/4] overflow-hidden bg-[#171717]">
                                     <img
                                         src={activeBook.cover}
                                         alt={activeBook.title}
+                                        loading="eager"
                                         className="
                                             h-full
                                             w-full
@@ -176,7 +191,7 @@ const Home = () => {
                                 <div className="mt-12 flex items-center gap-3 sm:hidden">
                                     <button
                                         onClick={previousBook}
-                                        className="flex h-11 w-11 items-center justify-center border border-white/10"
+                                    className="flex h-11 w-11 items-center justify-center border border-white/10"
                                         aria-label="Önceki kitap"
                                     >
                                         <HiArrowLeft className="h-4 w-4" />

@@ -3,7 +3,6 @@ import {
     HiLocationMarker,
     HiUser,
     HiArrowRight,
-    HiClock,
 } from "react-icons/hi";
 
 const Contact = () => {

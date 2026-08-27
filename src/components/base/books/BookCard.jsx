@@ -4,7 +4,7 @@ const BookCard = ({ book }) => {
     return (
         <Link
             to={book.href}
-            className="group block"
+            className="group block rounded-sm outline-none"
         >
             {/* Cover */}
 
@@ -17,6 +17,8 @@ const BookCard = ({ book }) => {
                 <img
                     src={book.cover}
                     alt={book.title}
+                    loading="lazy"
+                    decoding="async"
                     className="
                         h-full
                         w-full
@@ -30,7 +32,10 @@ const BookCard = ({ book }) => {
                 <div className="
                     absolute
                     inset-0
-                    bg-black/0
+                    bg-gradient-to-t
+                    from-black/20
+                    via-transparent
+                    to-transparent
                     transition-all
                     duration-500
                     group-hover:bg-black/30
@@ -90,7 +95,7 @@ const BookCard = ({ book }) => {
 
             {/* Info */}
 
-            <div className="mt-5">
+            <div className="mt-5 border-l border-white/10 pl-4 transition-colors duration-300 group-hover:border-header-accent/70">
 
                 <div className="
                     flex

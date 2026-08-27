@@ -10,26 +10,28 @@ import {
     HiOutlineRefresh,
 } from "react-icons/hi";
 import { books, chapters } from "../../consts/index.js";
-import mammoth from "mammoth";
 import {BiBold, BiItalic, BiUnderline} from "react-icons/bi";
 
-const ChapterForm = () => {
-    const navigate = useNavigate();
-    const { id } = useParams();
+const getInitialForm = (chapter) => ({
+    bookId: chapter?.bookId?.toString() || "",
+    order: chapter?.order?.toString() || "",
+    title: chapter?.title || "",
+    date: chapter?.date || "",
+    status: chapter?.status || "DRAFT",
+});
 
+const ChapterFormEditor = ({ id }) => {
+    const navigate = useNavigate();
     const isEdit = Boolean(id);
+    const chapter = isEdit
+        ? chapters.find((item) => item.id.toString() === id)
+        : null;
     const editorRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    const [form, setForm] = useState({
-        bookId: "",
-        order: "",
-        title: "",
-        date: "",
-        status: "DRAFT",
-    });
+    const [form, setForm] = useState(() => getInitialForm(chapter));
 
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(() => chapter?.content || "");
     const [errors, setErrors] = useState({});
     const [isSaving, setIsSaving] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
@@ -39,27 +41,10 @@ const ChapterForm = () => {
      */
 
     useEffect(() => {
-        if (!isEdit) return;
-
-        const chapter = chapters.find(
-            (item) => item.id.toString() === id
-        );
-
-        if (!chapter) {
+        if (isEdit && !chapter) {
             navigate("/admin/chapters");
-            return;
         }
-
-        setForm({
-            bookId: chapter.bookId?.toString() || "",
-            order: chapter.order?.toString() || "",
-            title: chapter.title || "",
-            date: chapter.date || "",
-            status: chapter.status || "DRAFT",
-        });
-
-        setContent(chapter.content || "");
-    }, [id, isEdit, navigate]);
+    }, [chapter, isEdit, navigate]);
 
     /*
      * FORM CHANGE
@@ -141,6 +126,8 @@ const ChapterForm = () => {
 
             const arrayBuffer =
                 await file.arrayBuffer();
+
+            const { default: mammoth } = await import("mammoth");
 
             const result =
                 await mammoth.convertToHtml({
@@ -1090,5 +1077,11 @@ const inputClass = (error = "") => `
     transition-colors
     placeholder:text-shadow-white/20
 `;
+
+const ChapterForm = () => {
+    const { id } = useParams();
+
+    return <ChapterFormEditor key={id || "create"} id={id} />;
+};
 
 export default ChapterForm;
