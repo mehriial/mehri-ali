@@ -175,12 +175,6 @@ const LoginModal = ({ isOpen, onClose, onRegister, onForgotPassword }) => {
                         placeholder="ornek@mail.com"
                     />
 
-                    <div className="flex justify-end">
-                        <button type="button" onClick={onForgotPassword} className="text-xs text-shadow-white/45 transition-colors hover:text-header-accent">
-                            Şifremi unuttum
-                        </button>
-                    </div>
-
                     <Input
                         label="Şifre"
                         name="password"
@@ -205,6 +199,12 @@ const LoginModal = ({ isOpen, onClose, onRegister, onForgotPassword }) => {
                     >
                         Giriş yap
                     </Button>
+
+                    <div className="flex justify-center">
+                        <button type="button" onClick={onForgotPassword} className="text-xs text-shadow-white/45 transition-colors hover:text-header-accent">
+                            Şifremi unuttum
+                        </button>
+                    </div>
 
                 </form>
 
