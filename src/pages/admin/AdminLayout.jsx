@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
     HiMenu,
     HiX,
@@ -14,6 +14,7 @@ import {
     HiLogout,
     HiChevronLeft,
 } from "react-icons/hi";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const navigation = [
     {
@@ -66,7 +67,7 @@ const navigation = [
         items: [
             {
                 name: "Mesajlar",
-                href: "/admin/messages",
+                href: "/admin/contact",
                 icon: HiMail,
             },
         ],
@@ -85,6 +86,8 @@ const navigation = [
 
 const AdminLayout = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { user, logout } = useAuth();
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -98,8 +101,8 @@ const AdminLayout = () => {
     };
 
     const handleLogout = () => {
-        // Daha sonra auth sistemi ilə bağlanacaq
-        console.log("Logout");
+        logout();
+        navigate("/", { replace: true });
     };
 
     return (
@@ -271,7 +274,7 @@ const AdminLayout = () => {
                                     tracking-[0.25em]
                                     text-header-accent
                                 ">
-                                    Admin
+                                    {user?.name || "Yönetici"}
                                 </p>
 
                                 <p className="

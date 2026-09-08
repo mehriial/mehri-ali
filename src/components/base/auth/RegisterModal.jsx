@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { HiX } from "react-icons/hi";
 import Input from "../../ui/input.jsx";
 import Button from "../../ui/Button.jsx";
+import { useAuth } from "../../../context/AuthContext.jsx";
 
 const RegisterModal = ({
                            isOpen,
                            onClose,
                            onLogin,
                        }) => {
+    const { register } = useAuth();
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -91,9 +93,12 @@ const RegisterModal = ({
             return;
         }
 
-        console.log("REGISTER", form);
-
-        // API burada olacak.
+        const result = register(form);
+        if (!result.ok) {
+            setError(result.message);
+            return;
+        }
+        onClose();
     };
 
     return (

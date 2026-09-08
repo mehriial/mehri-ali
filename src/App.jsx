@@ -1,7 +1,8 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout.jsx";
 import PageLoader from "./components/ui/PageLoader.jsx";
+import { useAuth } from "./context/AuthContext.jsx";
 
 const Home = lazy(() => import("./pages/home/index.jsx"));
 const Books = lazy(() => import("./pages/books/index.jsx"));
@@ -25,6 +26,14 @@ const AdminContact = lazy(() => import("./pages/admin/Contact.jsx"));
 const Settings = lazy(() => import("./pages/admin/Settings.jsx"));
 const ChapterForm = lazy(() => import("./pages/admin/ChapterForm.jsx"));
 
+function AdminGuard({ children }) {
+    const { user } = useAuth();
+    const location = useLocation();
+    if (!user) return <Navigate to="/" replace state={{ authRequired: true, from: location.pathname }} />;
+    if (user.role !== "admin") return <Navigate to="/" replace state={{ accessDenied: true }} />;
+    return children;
+}
+
 function App() {
     return (
         <Suspense fallback={<PageLoader />}>
@@ -40,7 +49,7 @@ function App() {
                     <Route path="/announcements" element={<Announcements />} />
                     <Route path="/contact" element={<Contact />} />
                 </Route>
-                <Route path="/admin" element={<AdminLayout />}>
+                <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
                     <Route index element={<AdminDashboard />} />
 
                 <Route path="books" element={<AdminBooks />} />

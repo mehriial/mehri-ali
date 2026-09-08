@@ -1,11 +1,14 @@
 const Input = ({
+                   label,
                    className = "",
                    ...props
                }) => {
     return (
-        <input
-            {...props}
-            className={`
+        <label className="block">
+            {label && <span className="mb-2 block text-[9px] uppercase tracking-[0.2em] text-shadow-white/50">{label}</span>}
+            <input
+                {...props}
+                className={`
                 w-full
                 rounded-md
                 border
@@ -24,7 +27,8 @@ const Input = ({
                 focus:ring-header-accent/20
                 ${className}
             `}
-        />
+            />
+        </label>
     );
 };
 

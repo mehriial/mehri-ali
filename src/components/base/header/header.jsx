@@ -18,6 +18,8 @@ import MobileMenuSheet from "./mobile-menu.jsx";
 import LoginModal from "../auth/LoginModal.jsx";
 import RegisterModal from "../auth/RegisterModal.jsx";
 import Button from "../../ui/Button.jsx";
+import ForgotPasswordModal from "../auth/ForgotPasswordModal.jsx";
+import { useAuth } from "../../../context/AuthContext.jsx";
 
 const navigation = [
     {
@@ -77,6 +79,8 @@ const Header = () => {
 
     const [isRegisterOpen, setIsRegisterOpen] =
         useState(false);
+    const [isForgotOpen, setIsForgotOpen] = useState(false);
+    const { user, logout } = useAuth();
 
     const location = useLocation();
 
@@ -116,7 +120,8 @@ const Header = () => {
         document.body.style.overflow =
             isMenuOpen ||
             isLoginOpen ||
-            isRegisterOpen
+            isRegisterOpen ||
+            isForgotOpen
                 ? "hidden"
                 : "";
 
@@ -128,6 +133,7 @@ const Header = () => {
         isMenuOpen,
         isLoginOpen,
         isRegisterOpen,
+        isForgotOpen,
     ]);
 
     /*
@@ -326,48 +332,14 @@ const Header = () => {
                             pr-5
                         ">
 
-                            {/* LOGIN */}
-
-                            <Button
-                                type="button"
-                                onClick={openLogin}
-                                className="
-                                border-none
-                                    text-[10px]
-                                    uppercase
-                                    tracking-[0.15em]
-                                    text-shadow-white/60
-                                    transition-colors
-                                    duration-300
-                                    hover:text-header-accent
-                                "
-                            >
-                                Giriş
-                            </Button>
-
-
-                            {/* REGISTER */}
-
-                            <Button
-                                type="button"
-                                onClick={openRegister}
-                                className="
-                                    border
-                                    border-header-accent
-                                    px-3
-                                    py-2
-                                    text-[9px]
-                                    uppercase
-                                    tracking-[0.15em]
-                                    text-header-accent
-                                    transition-all
-                                    duration-300
-                                    hover:bg-header-accent
-                                    hover:text-white
-                                "
-                            >
-                                Kayıt ol
-                            </Button>
+                            {user ? <>
+                                <span className="max-w-28 truncate text-[10px] text-shadow-white/65">{user.name}</span>
+                                {user.role === "admin" && <Link to="/admin" className="text-[10px] uppercase tracking-[0.15em] text-header-accent hover:text-white">Yönetim</Link>}
+                                <Button type="button" onClick={logout} className="border-none text-[10px] uppercase tracking-[0.15em] text-shadow-white/60 hover:text-header-accent">Çıkış</Button>
+                            </> : <>
+                                <Button type="button" onClick={openLogin} className="border-none text-[10px] uppercase tracking-[0.15em] text-shadow-white/60 hover:text-header-accent">Giriş</Button>
+                                <Button type="button" onClick={openRegister} className="border border-header-accent px-3 py-2 text-[9px] uppercase tracking-[0.15em] text-header-accent hover:bg-header-accent hover:text-white">Kayıt ol</Button>
+                            </>}
 
                         </div>
 
@@ -555,7 +527,10 @@ const Header = () => {
                 onRegister={
                     switchToRegister
                 }
+                onForgotPassword={() => { setIsLoginOpen(false); setTimeout(() => setIsForgotOpen(true), 150); }}
             />
+
+            <ForgotPasswordModal isOpen={isForgotOpen} onClose={() => setIsForgotOpen(false)} onLogin={() => { setIsForgotOpen(false); setTimeout(() => setIsLoginOpen(true), 150); }} />
 
 
             {/* =====================================================

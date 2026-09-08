@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { HiX } from "react-icons/hi";
 import Input from "../../ui/input.jsx";
 import Button from "../../ui/Button.jsx";
+import { useAuth } from "../../../context/AuthContext.jsx";
 
-const LoginModal = ({ isOpen, onClose, onRegister }) => {
+const LoginModal = ({ isOpen, onClose, onRegister, onForgotPassword }) => {
+    const { login } = useAuth();
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -61,9 +63,12 @@ const LoginModal = ({ isOpen, onClose, onRegister }) => {
             return;
         }
 
-        console.log("LOGIN", form);
-
-        // API burada olacak.
+        const result = login(form);
+        if (!result.ok) {
+            setError(result.message);
+            return;
+        }
+        onClose();
     };
 
     return (
@@ -169,6 +174,12 @@ const LoginModal = ({ isOpen, onClose, onRegister }) => {
                         onChange={handleChange}
                         placeholder="ornek@mail.com"
                     />
+
+                    <div className="flex justify-end">
+                        <button type="button" onClick={onForgotPassword} className="text-xs text-shadow-white/45 transition-colors hover:text-header-accent">
+                            Şifremi unuttum
+                        </button>
+                    </div>
 
                     <Input
                         label="Şifre"

@@ -7,7 +7,7 @@ import {
 } from "react-icons/hi";
 
 const Settings = () => {
-    const [settings, setSettings] = useState({
+    const defaults = {
         authorName: "Mehri",
         email: "author@example.com",
         siteTitle: "Yazarın Dünyası",
@@ -19,7 +19,11 @@ const Settings = () => {
         boardEnabled: true,
         commentsEnabled: true,
         announcementsEnabled: true,
+    };
+    const [settings, setSettings] = useState(() => {
+        try { return { ...defaults, ...JSON.parse(localStorage.getItem("mehri-ali-settings")) }; } catch { return defaults; }
     });
+    const [saved, setSaved] = useState(false);
 
     const update = (key, value) => {
         setSettings((prev) => ({
@@ -31,7 +35,8 @@ const Settings = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log("Settings:", settings);
+        localStorage.setItem("mehri-ali-settings", JSON.stringify(settings));
+        setSaved(true);
     };
 
     return (
@@ -206,12 +211,14 @@ const Settings = () => {
 
                     <div className="
                         flex
+                        items-center
                         justify-end
                         border-t
                         border-white/10
                         pt-8
                     ">
 
+                        {saved && <span className="mr-4 text-xs text-header-accent">Değişiklikler kaydedildi.</span>}
                         <button
                             type="submit"
                             className="primaryButton"

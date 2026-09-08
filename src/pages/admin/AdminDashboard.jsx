@@ -6,6 +6,7 @@ import {
     HiMail,
     HiUsers,
 } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const stats = [
     {
@@ -318,8 +319,8 @@ const AdminDashboard = () => {
                             px-6
                             py-4
                         ">
-                            <button
-                                type="button"
+                            <Link
+                                to="/admin/books/create"
                                 className="
                                     text-[9px]
                                     uppercase
@@ -330,7 +331,7 @@ const AdminDashboard = () => {
                                 "
                             >
                                 Tüm yorumları gör →
-                            </button>
+                            </Link>
                         </div>
 
                     </div>
@@ -429,8 +430,8 @@ const AdminDashboard = () => {
                             px-6
                             py-4
                         ">
-                            <button
-                                type="button"
+                            <Link
+                                to="/admin/chapters/create"
                                 className="
                                     text-[9px]
                                     uppercase
@@ -441,7 +442,7 @@ const AdminDashboard = () => {
                                 "
                             >
                                 Tüm mesajları gör →
-                            </button>
+                            </Link>
                         </div>
 
                     </div>
@@ -469,8 +470,8 @@ const AdminDashboard = () => {
                         lg:grid-cols-4
                     ">
 
-                        <button
-                            type="button"
+                            <Link
+                                to="/admin/announcements"
                             className="
                                 flex
                                 items-center
@@ -503,10 +504,10 @@ const AdminDashboard = () => {
                                     Kitap ekle
                                 </p>
                             </div>
-                        </button>
+                            </Link>
 
-                        <button
-                            type="button"
+                            <Link
+                                to="/admin/comments"
                             className="
                                 flex
                                 items-center
@@ -539,7 +540,7 @@ const AdminDashboard = () => {
                                     Bölüm oluştur
                                 </p>
                             </div>
-                        </button>
+                            </Link>
 
                         <button
                             type="button"
