@@ -320,7 +320,7 @@ const AdminDashboard = () => {
                             py-4
                         ">
                             <Link
-                                to="/admin/books/create"
+                                to="/admin/comments"
                                 className="
                                     text-[9px]
                                     uppercase
@@ -431,7 +431,7 @@ const AdminDashboard = () => {
                             py-4
                         ">
                             <Link
-                                to="/admin/chapters/create"
+                                to="/admin/contact"
                                 className="
                                     text-[9px]
                                     uppercase
@@ -470,8 +470,8 @@ const AdminDashboard = () => {
                         lg:grid-cols-4
                     ">
 
-                            <Link
-                                to="/admin/announcements"
+                        <Link
+                            to="/admin/books/create"
                             className="
                                 flex
                                 items-center
@@ -504,10 +504,10 @@ const AdminDashboard = () => {
                                     Kitap ekle
                                 </p>
                             </div>
-                            </Link>
+                        </Link>
 
-                            <Link
-                                to="/admin/comments"
+                        <Link
+                            to="/admin/chapters/create"
                             className="
                                 flex
                                 items-center
@@ -540,10 +540,10 @@ const AdminDashboard = () => {
                                     Bölüm oluştur
                                 </p>
                             </div>
-                            </Link>
+                        </Link>
 
-                        <button
-                            type="button"
+                        <Link
+                            to="/admin/announcements"
                             className="
                                 flex
                                 items-center
@@ -576,10 +576,10 @@ const AdminDashboard = () => {
                                     Yeni duyuru yayınla
                                 </p>
                             </div>
-                        </button>
+                        </Link>
 
-                        <button
-                            type="button"
+                        <Link
+                            to="/admin/comments"
                             className="
                                 flex
                                 items-center
@@ -612,7 +612,7 @@ const AdminDashboard = () => {
                                     Okur yorumlarını incele
                                 </p>
                             </div>
-                        </button>
+                        </Link>
 
                     </div>
 

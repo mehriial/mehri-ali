@@ -106,7 +106,7 @@ const AdminLayout = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background text-shadow-white">
+        <div className="adminShell min-h-screen text-shadow-white">
 
             {/* =====================================================
                 MOBILE HEADER
