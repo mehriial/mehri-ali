@@ -1,6 +1,6 @@
-import Hero from "./Hero";
-import FeaturedBooks from "./FeaturedBooks";
-import ContactSection from "./ContactSection";
+import Hero from "./Hero.jsx";
+import FeaturedBooks from "./FeaturedBooks.jsx";
+import ContactSection from "./ContactSection.jsx";
 
 function Home() {
     return (

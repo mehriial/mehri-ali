@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-import BoardComments from "./BoardComments";
+import BoardComments from "./BoardComments.jsx";
 
 function Avatar({ username }) {
     return (

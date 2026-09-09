@@ -1,5 +1,5 @@
-import ProfileHeader from "./ProfileHeader";
-import ProfileLibrary from "./ProfileLibrary";
+import ProfileHeader from "./ProfileHeader.jsx";
+import ProfileLibrary from "./ProfileLibrary.jsx";
 
 import {
     profile,

@@ -1,7 +1,7 @@
 import {useMemo, useState} from "react";
 import { X} from "lucide-react";
 
-import {books} from "@/data/books";
+import {books} from "@/data/books.js";
 import BooksHeader from "@/components/app/books/BooksHeader.jsx";
 import BooksFilters from "@/components/app/books/BooksFilters.jsx";
 import BookSeries from "@/components/app/books/BookSeries.jsx";

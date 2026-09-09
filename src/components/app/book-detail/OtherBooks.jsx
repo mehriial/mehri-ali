@@ -1,4 +1,4 @@
-import { books } from "@/data/books";
+import { books } from "@/data/books.js";
 import BookCard from "@/components/common/book-card/BookCard";
 
 function OtherBooks({ book }) {

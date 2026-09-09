@@ -7,9 +7,9 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet.jsx";
 
-import HeaderLogo from "./HeaderLogo";
+import HeaderLogo from "./HeaderLogo.jsx";
 import { navigation } from "@/constants/navigation.js";
 
 function MobileMenu({

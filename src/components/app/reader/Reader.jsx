@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { books } from "@/data/books";
+import { books } from "@/data/books.js";
 
-import ReaderHeader from "./ReaderHeader";
-import ReaderContent from "./ReaderContent";
-import ReaderSettings from "./ReaderSettings";
-import CommentsDrawer from "./CommentsDrawer";
-import ChapterNavigation from "./ChapterNavigation";
+import ReaderHeader from "./ReaderHeader.jsx";
+import ReaderContent from "./ReaderContent.jsx";
+import ReaderSettings from "./ReaderSettings.jsx";
+import CommentsDrawer from "./CommentsDrawer.jsx";
+import ChapterNavigation from "./ChapterNavigation.jsx";
 
 const DEFAULT_SETTINGS = {
     font: "Inter",

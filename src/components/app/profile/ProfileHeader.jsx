@@ -1,13 +1,11 @@
 import {
-    BookOpen,
     Camera,
-    Users,
 } from "lucide-react";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.jsx";
 
-import ProfileEditDialog from "./ProfileEditDialog";
+import ProfileEditDialog from "./ProfileEditDialog.jsx";
 
 
 function ProfileHeader({

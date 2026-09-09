@@ -5,15 +5,15 @@ import {
     X,
 } from "lucide-react";
 
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button.jsx";
+import {Input} from "@/components/ui/input.jsx";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select.jsx";
 
 function EditComposer({
                           books,

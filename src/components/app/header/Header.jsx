@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import HeaderLogo from "./HeaderLogo";
-import DesktopNavigation from "./DesktopNavigation";
-import HeaderActions from "./HeaderActions";
-import MobileMenu from "./MobileMenu";
+import HeaderLogo from "./HeaderLogo.jsx";
+import DesktopNavigation from "./DesktopNavigation.jsx";
+import HeaderActions from "./HeaderActions.jsx";
+import MobileMenu from "./MobileMenu.jsx";
 
 function Header() {
     const [bookTheme, setBookTheme] = useState(null);

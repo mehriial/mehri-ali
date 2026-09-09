@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 
-import AnnouncementCard from "./AnnouncementCard";
-import AnnouncementsEmpty from "./AnnouncementsEmpty";
+import AnnouncementCard from "./AnnouncementCard.jsx";
+import AnnouncementsEmpty from "./AnnouncementsEmpty.jsx";
 
-import { initialAnnouncements } from "@/data/announcements";
+import { initialAnnouncements } from "@/data/announcements.js";
 
 
 const STORAGE_KEY = "announcements";

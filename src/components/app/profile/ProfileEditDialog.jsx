@@ -14,9 +14,9 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input.jsx";
+import { Textarea } from "@/components/ui/textarea.jsx";
+import { Button } from "@/components/ui/button.jsx";
 
 
 function ProfileEditDialog({

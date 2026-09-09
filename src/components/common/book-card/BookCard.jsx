@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
-import BookCover from "./BookCover";
-import BookMeta from "./BookMeta";
+import BookCover from "./BookCover.jsx";
+import BookMeta from "./BookMeta.jsx";
 
 function BookCard({book}) {
     return (

@@ -1,6 +1,6 @@
-import ProfileBooks from "./ProfileBooks";
+import ProfileBooks from "./ProfileBooks.jsx";
 
-import { profileLibrary } from "@/data/profile";
+import { profileLibrary } from "@/data/profile.js";
 
 
 function ProfileLibrary() {

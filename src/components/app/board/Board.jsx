@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { initialBoardPosts } from "@/data/board";
+import { initialBoardPosts } from "@/data/board.js";
 
-import BoardHeader from "./BoardHeader";
+import BoardHeader from "./BoardHeader.jsx";
 import BoardComposer from "./BoardComposer.jsx";
-import BoardPost from "./BoardPost";
-import BoardEmpty from "./BoardEmpty";
+import BoardPost from "./BoardPost.jsx";
+import BoardEmpty from "./BoardEmpty.jsx";
 
 const STORAGE_KEY = "boardPosts";
 

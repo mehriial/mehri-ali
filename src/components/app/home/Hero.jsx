@@ -6,7 +6,7 @@ import {
     ChevronRight,
 } from "lucide-react";
 
-import {books} from "@/data/books";
+import {books} from "@/data/books.js";
 
 function Hero() {
     const [activeIndex, setActiveIndex] = useState(0);

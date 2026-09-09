@@ -4,7 +4,7 @@ import ypGallery3 from "/images/yp3.jpg";
 import ypGallery4 from "/images/yp4.jpg";
 
 
-import { books } from "./books";
+import { books } from "./books.js";
 
 
 // Galeri filtresinde kullanılacak kitaplar

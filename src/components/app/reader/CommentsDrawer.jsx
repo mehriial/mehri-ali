@@ -10,7 +10,7 @@ import {
     X,
 } from "lucide-react";
 
-import ParagraphComment from "./ParagraphComment";
+import ParagraphComment from "./ParagraphComment.jsx";
 
 function CommentsDrawer({
                             open,

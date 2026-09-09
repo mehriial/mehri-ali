@@ -2,7 +2,7 @@ import {useMemo} from "react";
 import {ArrowUpRight} from "lucide-react";
 import {Link} from "react-router-dom";
 
-import {books} from "@/data/books";
+import {books} from "@/data/books.js";
 import BookCard from "@/components/common/book-card/BookCard.jsx";
 
 function FeaturedBooks() {

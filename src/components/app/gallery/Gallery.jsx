@@ -3,14 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import {
     galleryBooks,
     initialGalleryItems,
-} from "@/data/gallery";
+} from "@/data/gallery.js";
 
-import GalleryHeader from "./GalleryHeader";
-import GalleryTabs from "./GalleryTabs";
-import GalleryFilters from "./GalleryFilters";
-import GalleryGrid from "./GalleryGrid";
-import EditComposer from "./EditComposer";
-import GalleryEmpty from "./GalleryEmpty";
+import GalleryTabs from "./GalleryTabs.jsx";
+import GalleryFilters from "./GalleryFilters.jsx";
+import GalleryGrid from "./GalleryGrid.jsx";
+import EditComposer from "./EditComposer.jsx";
+import GalleryEmpty from "./GalleryEmpty.jsx";
 
 const STORAGE_KEY = "galleryItems";
 

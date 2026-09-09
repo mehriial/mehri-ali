@@ -1,6 +1,5 @@
 import {
     ArrowUpRight,
-    Bell,
     BookOpen,
     Images,
     Megaphone,

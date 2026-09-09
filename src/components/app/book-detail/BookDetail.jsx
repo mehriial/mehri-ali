@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { books } from "@/data/books";
-import BookDetailHero from "./BookDetailHero";
+import { books } from "@/data/books.js";
+import BookDetailHero from "./BookDetailHero.jsx";
 import OtherBooks from "./OtherBooks.jsx";
-import BookChapters from "./BookChapters";
-import BookCharacters from "./BookCharacters";
-import BookGallery from "./BookGallery";
+import BookChapters from "./BookChapters.jsx";
+import BookCharacters from "./BookCharacters.jsx";
+import BookGallery from "./BookGallery.jsx";
 
 const tabs = [
     {
