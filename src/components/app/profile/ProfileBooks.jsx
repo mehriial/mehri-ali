@@ -1,4 +1,4 @@
-import BookCard from "@/components/Common/book-card/BookCard";
+import BookCard from "@/components/common/book-card/BookCard.jsx";
 
 
 function ProfileBooks({ books }) {

@@ -3,7 +3,7 @@ import {ArrowUpRight} from "lucide-react";
 import {Link} from "react-router-dom";
 
 import {books} from "@/data/books";
-import BookCard from "@/components/Common/book-card/BookCard";
+import BookCard from "@/components/common/book-card/BookCard.jsx";
 
 function FeaturedBooks() {
     const featuredBooks = useMemo(() => {
