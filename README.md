@@ -1,9 +1,5 @@
 # React + Vite
 
-## Proje notu
-
-Geliştirme ortamında admin panelini denemek için `admin@mehriali.com` / `Admin123!` hesabını kullanabilirsiniz. Kimlik doğrulama verileri şu anda tarayıcının yerel depolamasında tutulur; canlı ortamda bunun yerine bir API, parola hashleme ve e-posta sağlayıcısı bağlanmalıdır.
-
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
