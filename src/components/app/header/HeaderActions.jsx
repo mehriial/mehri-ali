@@ -1,9 +1,9 @@
 import { HiOutlineSearch } from "react-icons/hi";
 
-import LoginDialog from "@/components/App/auth/LoginDialog";
-import RegisterDialog from "@/components/App/auth/RegisterDialog";
-import ForgotPasswordDialog from "@/components/App/auth/ForgotPasswordDialog";
-import ResetPasswordDialog from "@/components/App/auth/ResetPasswordDialog";
+import LoginDialog from "@/components/app/auth/LoginDialog";
+import RegisterDialog from "@/components/app/auth/RegisterDialog";
+import ForgotPasswordDialog from "@/components/app/auth/ForgotPasswordDialog";
+import ResetPasswordDialog from "@/components/app/auth/ResetPasswordDialog";
 
 function HeaderActions({
                            authView,

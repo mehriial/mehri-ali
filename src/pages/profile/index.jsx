@@ -1,4 +1,4 @@
-import Profile from "@/components/App/profile/Profile";
+import Profile from "@/components/app/profile/Profile";
 
 
 function ProfilePage() {

@@ -1,4 +1,4 @@
-import Reader from "@/components/App/reader/Reader";
+import Reader from "@/components/app/reader/Reader";
 
 function ReaderPage() {
     return <Reader />;

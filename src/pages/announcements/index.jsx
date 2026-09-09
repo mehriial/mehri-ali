@@ -1,4 +1,4 @@
-import Announcements from "@/components/App/announcements/Announcements";
+import Announcements from "@/components/app/announcements/Announcements";
 
 
 function AnnouncementsPage() {
