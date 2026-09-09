@@ -3,30 +3,17 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
     HiMenu,
     HiX,
-    HiHome,
     HiBookOpen,
     HiClipboardList,
-    HiChatAlt2,
     HiUsers,
     HiSpeakerphone,
     HiMail,
-    HiCog,
     HiLogout,
     HiChevronLeft,
 } from "react-icons/hi";
 import { useAuth } from "../../context/AuthContext.jsx";
 
 const navigation = [
-    {
-        title: "Ümumi",
-        items: [
-            {
-                name: "Dashboard",
-                href: "/admin",
-                icon: HiHome,
-            },
-        ],
-    },
     {
         title: "Məzmun",
         items: [
@@ -48,16 +35,16 @@ const navigation = [
         ],
     },
     {
-        title: "Oxucular",
+        title: "Topluluk",
         items: [
-            {
-                name: "Yorumlar",
-                href: "/admin/comments",
-                icon: HiChatAlt2,
-            },
             {
                 name: "Pano",
                 href: "/admin/board",
+                icon: HiUsers,
+            },
+            {
+                name: "Kullanıcılar",
+                href: "/admin/users",
                 icon: HiUsers,
             },
         ],
@@ -72,16 +59,6 @@ const navigation = [
             },
         ],
     },
-    {
-        title: "Sistem",
-        items: [
-            {
-                name: "Ayarlar",
-                href: "/admin/settings",
-                icon: HiCog,
-            },
-        ],
-    },
 ];
 
 const AdminLayout = () => {
@@ -93,10 +70,6 @@ const AdminLayout = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const isActive = (href) => {
-        if (href === "/admin") {
-            return location.pathname === "/admin";
-        }
-
         return location.pathname.startsWith(href);
     };
 

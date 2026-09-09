@@ -13,17 +13,15 @@ const Notes = lazy(() => import("./pages/notes/index.jsx"));
 const Board = lazy(() => import("./pages/board/index.jsx"));
 const Announcements = lazy(() => import("./pages/announcements/index.jsx"));
 const Contact = lazy(() => import("./pages/contact/index.jsx"));
+const Profile = lazy(() => import("./pages/user/Profile.jsx"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout.jsx"));
-const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard.jsx"));
 const AdminBooks = lazy(() => import("./pages/admin/AdminBooks.jsx"));
 const AdminBookForm = lazy(() => import("./pages/admin/AdminBookForm.jsx"));
 const Chapters = lazy(() => import("./pages/admin/Chapters.jsx"));
-const Comments = lazy(() => import("./pages/admin/Comments.jsx"));
 const AdminAnnouncements = lazy(() => import("./pages/admin/Announcements.jsx"));
 const AdminBoard = lazy(() => import("./pages/admin/Board.jsx"));
-const AdminNotes = lazy(() => import("./pages/admin/Notes.jsx"));
 const AdminContact = lazy(() => import("./pages/admin/Contact.jsx"));
-const Settings = lazy(() => import("./pages/admin/Settings.jsx"));
+const AdminUsers = lazy(() => import("./pages/admin/Users.jsx"));
 const ChapterForm = lazy(() => import("./pages/admin/ChapterForm.jsx"));
 
 function AdminGuard({ children }) {
@@ -48,31 +46,24 @@ function App() {
                     <Route path="/board" element={<Board />} />
                     <Route path="/announcements" element={<Announcements />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/profile" element={<Profile />} />
                 </Route>
                 <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
-                    <Route index element={<AdminDashboard />} />
+                    <Route index element={<Navigate to="books" replace />} />
 
-                <Route path="books" element={<AdminBooks />} />
-                <Route path="books/create" element={<AdminBookForm />} />
-                <Route path="books/:id/edit" element={<AdminBookForm />} />
+                    <Route path="books" element={<AdminBooks />} />
+                    <Route path="books/create" element={<AdminBookForm />} />
+                    <Route path="books/:id/edit" element={<AdminBookForm />} />
 
-                <Route path="/admin/chapters" element={<Chapters />} />
-                <Route path="/admin/comments" element={<Comments />} />
-                <Route path="/admin/board" element={<AdminBoard />} />
-                <Route path="/admin/notes" element={<AdminNotes />} />
-                <Route path="/admin/announcements" element={<AdminAnnouncements />} />
-                <Route path="/admin/contact" element={<AdminContact />} />
+                    <Route path="chapters" element={<Chapters />} />
+                    <Route path="board" element={<AdminBoard />} />
+                    <Route path="announcements" element={<AdminAnnouncements />} />
+                    <Route path="users" element={<AdminUsers />} />
+                    <Route path="contact" element={<AdminContact />} />
 
-                <Route
-                    path="/admin/chapters/create"
-                    element={<ChapterForm />}
-                />
+                    <Route path="chapters/create" element={<ChapterForm />} />
 
-                <Route
-                    path="/admin/chapters/:id/edit"
-                    element={<ChapterForm />}
-                />
-                    <Route path="/admin/settings" element={<Settings />} />
+                    <Route path="chapters/:id/edit" element={<ChapterForm />} />
                 </Route>
             </Routes>
         </Suspense>

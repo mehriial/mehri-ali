@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import {
-    HiMenu,
-} from "react-icons/hi";
+import {useEffect, useState} from "react";
 import {
     FaInstagram,
     FaGoodreads,
@@ -19,8 +16,14 @@ import LoginModal from "../auth/LoginModal.jsx";
 import RegisterModal from "../auth/RegisterModal.jsx";
 import Button from "../../ui/Button.jsx";
 import ForgotPasswordModal from "../auth/ForgotPasswordModal.jsx";
-import { useAuth } from "../../../context/AuthContext.jsx";
-
+import {useAuth} from "../../../context/AuthContext.jsx";
+import {
+    HiMenu,
+    HiChevronDown,
+    HiUser,
+    HiLogout,
+    HiCog,
+} from "react-icons/hi";
 const navigation = [
     {
         name: "Ana sayfa",
@@ -67,7 +70,7 @@ const socialLinks = [
 ];
 
 const Header = () => {
-
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] =
         useState(false);
 
@@ -80,7 +83,7 @@ const Header = () => {
     const [isRegisterOpen, setIsRegisterOpen] =
         useState(false);
     const [isForgotOpen, setIsForgotOpen] = useState(false);
-    const { user, logout } = useAuth();
+    const {user, logout} = useAuth();
 
     const location = useLocation();
 
@@ -324,22 +327,285 @@ const Header = () => {
                         ============================================= */}
 
                         <div className="
+    flex
+    items-center
+    gap-3
+    border-r
+    border-white/10
+    pr-5
+">
+
+                            {user ? (
+                                <div className="relative">
+
+                                    {/* USER AVATAR */}
+
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setIsUserMenuOpen((prev) => !prev)
+                                        }
+                                        className="
+                    flex
+                    items-center
+                    gap-2
+                    transition-colors
+                    duration-300
+                    hover:text-header-accent
+                "
+                                        aria-label="Kullanıcı menüsü"
+                                    >
+
+                                        <div className="
+                    flex
+                    h-9
+                    w-9
+                    items-center
+                    justify-center
+                    overflow-hidden
+                    rounded-full
+                    border
+                    border-white/20
+                    bg-white/5
+                    text-sm
+                    font-medium
+                    text-shadow-white
+                    transition-all
+                    duration-300
+                    hover:border-header-accent
+                ">
+                                            {user.avatar ? (
+                                                <img
+                                                    src={user.avatar}
+                                                    alt={user.name || "Kullanıcı"}
+                                                    className="
+                                h-full
+                                w-full
+                                object-cover
+                            "
+                                                />
+                                            ) : (
+                                                <span>
+                            {(
+                                user.name ||
+                                user.username ||
+                                "U"
+                            )
+                                .charAt(0)
+                                .toUpperCase()}
+                        </span>
+                                            )}
+                                        </div>
+
+                                        <HiChevronDown
+                                            className={`
+                        h-4
+                        w-4
+                        transition-transform
+                        duration-300
+                        ${
+                                                isUserMenuOpen
+                                                    ? "rotate-180 text-header-accent"
+                                                    : ""
+                                            }
+                    `}
+                                        />
+
+                                    </button>
+
+
+                                    {/* DROPDOWN */}
+
+                                    {isUserMenuOpen && (
+                                        <div
+                                            className="
+                        absolute
+                        right-0
+                        top-[calc(100%+14px)]
+                        w-48
+                        overflow-hidden
+                        border
+                        border-white/10
+                        bg-background/95
+                        shadow-2xl
+                        backdrop-blur-xl
+                    "
+                                        >
+
+                                            {/* USER INFO */}
+
+                                            <div className="
+                        border-b
+                        border-white/10
+                        px-4
+                        py-3
+                    ">
+                                                <p className="
+                            truncate
+                            text-[11px]
+                            font-medium
+                            uppercase
+                            tracking-[0.12em]
+                            text-shadow-white
+                        ">
+                                                    {user.name ||
+                                                        user.username ||
+                                                        "Kullanıcı"}
+                                                </p>
+
+                                                {user.email && (
+                                                    <p className="
+                                mt-1
+                                truncate
+                                text-[9px]
+                                text-shadow-white/40
+                            ">
+                                                        {user.email}
+                                                    </p>
+                                                )}
+                                            </div>
+
+
+                                            {/* PROFILE */}
+
+                                            <Link
+                                                to="/profile"
+                                                onClick={() =>
+                                                    setIsUserMenuOpen(false)
+                                                }
+                                                className="
                             flex
                             items-center
                             gap-3
-                            border-r
-                            border-white/10
-                            pr-5
-                        ">
+                            px-4
+                            py-3
+                            text-[10px]
+                            uppercase
+                            tracking-[0.12em]
+                            text-shadow-white/70
+                            transition-colors
+                            duration-300
+                            hover:bg-white/5
+                            hover:text-header-accent
+                        "
+                                            >
+                                                <HiUser className="h-4 w-4"/>
 
-                            {user ? <>
-                                <span className="max-w-28 truncate text-[10px] text-shadow-white/65">{user.name}</span>
-                                {user.role === "admin" && <Link to="/admin" className="text-[10px] uppercase tracking-[0.15em] text-header-accent hover:text-white">Yönetim</Link>}
-                                <Button type="button" onClick={logout} className="border-none text-[10px] uppercase tracking-[0.15em] text-shadow-white/60 hover:text-header-accent">Çıkış</Button>
-                            </> : <>
-                                <Button type="button" onClick={openLogin} className="border-none text-[10px] uppercase tracking-[0.15em] text-shadow-white/60 hover:text-header-accent">Giriş</Button>
-                                <Button type="button" onClick={openRegister} className="border border-header-accent px-3 py-2 text-[9px] uppercase tracking-[0.15em] text-header-accent hover:bg-header-accent hover:text-white">Kayıt ol</Button>
-                            </>}
+                                                <span>
+                            Profilim
+                        </span>
+                                            </Link>
+
+
+                                            {/* ADMIN */}
+
+                                            {user.role === "admin" && (
+                                                <Link
+                                                    to="/admin"
+                                                    onClick={() =>
+                                                        setIsUserMenuOpen(false)
+                                                    }
+                                                    className="
+                                flex
+                                items-center
+                                gap-3
+                                px-4
+                                py-3
+                                text-[10px]
+                                uppercase
+                                tracking-[0.12em]
+                                text-header-accent
+                                transition-colors
+                                duration-300
+                                hover:bg-white/5
+                                hover:text-white
+                            "
+                                                >
+                                                    <HiCog className="h-4 w-4"/>
+
+                                                    <span>
+                                Yönetim
+                            </span>
+                                                </Link>
+                                            )}
+
+
+                                            {/* LOGOUT */}
+
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setIsUserMenuOpen(false);
+                                                    logout();
+                                                }}
+                                                className="
+                            flex
+                            w-full
+                            items-center
+                            gap-3
+                            border-t
+                            border-white/10
+                            px-4
+                            py-3
+                            text-left
+                            text-[10px]
+                            uppercase
+                            tracking-[0.12em]
+                            text-shadow-white/60
+                            transition-colors
+                            duration-300
+                            hover:bg-white/5
+                            hover:text-header-accent
+                        "
+                                            >
+                                                <HiLogout className="h-4 w-4"/>
+
+                                                <span>
+                            Çıkış
+                        </span>
+                                            </button>
+
+                                        </div>
+                                    )}
+
+                                </div>
+                            ) : (
+                                <>
+                                    <Button
+                                        type="button"
+                                        onClick={openLogin}
+                                        className="
+                    border-none
+                    text-[10px]
+                    uppercase
+                    tracking-[0.15em]
+                    text-shadow-white/60
+                    hover:text-header-accent
+                "
+                                    >
+                                        Giriş
+                                    </Button>
+
+                                    <Button
+                                        type="button"
+                                        onClick={openRegister}
+                                        className="
+                    border
+                    border-header-accent
+                    px-3
+                    py-2
+                    text-[9px]
+                    uppercase
+                    tracking-[0.15em]
+                    text-header-accent
+                    hover:bg-header-accent
+                    hover:text-white
+                "
+                                    >
+                                        Kayıt ol
+                                    </Button>
+                                </>
+                            )}
 
                         </div>
 
@@ -385,7 +651,7 @@ const Header = () => {
                                             <Icon className="
                                                 h-[17px]
                                                 w-[17px]
-                                            " />
+                                            "/>
 
                                         </a>
                                     );
@@ -449,7 +715,7 @@ const Header = () => {
                                             <Icon className="
                                                 h-4
                                                 w-4
-                                            " />
+                                            "/>
 
                                         </a>
                                     );
@@ -483,7 +749,7 @@ const Header = () => {
                             <HiMenu className="
                                 h-5
                                 w-5
-                            " />
+                            "/>
 
                         </button>
 
@@ -527,10 +793,16 @@ const Header = () => {
                 onRegister={
                     switchToRegister
                 }
-                onForgotPassword={() => { setIsLoginOpen(false); setTimeout(() => setIsForgotOpen(true), 150); }}
+                onForgotPassword={() => {
+                    setIsLoginOpen(false);
+                    setTimeout(() => setIsForgotOpen(true), 150);
+                }}
             />
 
-            <ForgotPasswordModal isOpen={isForgotOpen} onClose={() => setIsForgotOpen(false)} onLogin={() => { setIsForgotOpen(false); setTimeout(() => setIsLoginOpen(true), 150); }} />
+            <ForgotPasswordModal isOpen={isForgotOpen} onClose={() => setIsForgotOpen(false)} onLogin={() => {
+                setIsForgotOpen(false);
+                setTimeout(() => setIsLoginOpen(true), 150);
+            }}/>
 
 
             {/* =====================================================

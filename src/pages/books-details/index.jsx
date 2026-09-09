@@ -1,11 +1,13 @@
 import { Link, useParams } from "react-router-dom";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { HiArrowLeft, HiArrowRight, HiBookOpen, HiCheck } from "react-icons/hi";
 
 import { books } from "../../consts/index.js";
 import Button from "../../components/ui/Button.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const BookDetails = () => {
     const { id } = useParams();
+    const { user, libraryBookIds, toggleLibraryBook } = useAuth();
 
     const book = books.find(
         (item) =>
@@ -67,6 +69,8 @@ const BookDetails = () => {
         currentSeriesIndex < seriesBooks.length - 1
             ? seriesBooks[currentSeriesIndex + 1]
             : null;
+
+    const isInLibrary = libraryBookIds.includes(book.id);
 
     return (
         <div className="min-h-screen bg-background text-shadow-white">
@@ -344,13 +348,28 @@ const BookDetails = () => {
 
                         {/* ACTION */}
 
-                        <div className="mt-10">
+                        <div className="mt-10 flex flex-wrap gap-3">
 
                             <Link to={`${book.href}/chapters`}>
                                 <Button variant="primary">
                                     Kitabı okumaya başla
                                 </Button>
                             </Link>
+
+                            {user ? (
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    onClick={() => toggleLibraryBook(book.id)}
+                                >
+                                    {isInLibrary ? <HiCheck className="mr-2 inline h-4 w-4" /> : <HiBookOpen className="mr-2 inline h-4 w-4" />}
+                                    {isInLibrary ? "Kütüphaneden çıkar" : "Kütüphaneme ekle"}
+                                </Button>
+                            ) : (
+                                <span className="self-center text-xs text-shadow-white/45">
+                                    Kütüphanene eklemek için giriş yap.
+                                </span>
+                            )}
                         </div>
 
                     </div>

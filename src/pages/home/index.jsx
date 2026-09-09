@@ -39,7 +39,7 @@ const Home = () => {
         <div className="min-h-screen bg-background text-shadow-white">
             {/* BOOK CAROUSEL */}
             <section className="relative overflow-hidden border-t border-white/10">
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-header-accent/[0.07] to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-56" />
                 <div className="mx-auto max-w-[1400px] p-6 lg:px-10">
 
                     {/* Section heading */}

@@ -38,6 +38,8 @@ export const AuthProvider = ({ children }) => {
             name: nextUser.name,
             email: nextUser.email,
             role: nextUser.role,
+            avatar: nextUser.avatar,
+            bio: nextUser.bio,
         } : null;
         setUser(safeUser);
         if (safeUser) localStorage.setItem(SESSION_KEY, JSON.stringify(safeUser));
@@ -72,7 +74,56 @@ export const AuthProvider = ({ children }) => {
         return { ok: true };
     };
 
-    const value = { user, login, register, resetPassword, logout: () => persistSession(null) };
+    const removeUser = (id) => {
+        if (id === user?.id) {
+            return { ok: false, message: "Kendi hesabınızı silemezsiniz." };
+        }
+
+        setUsers((current) => current.filter((item) => item.id !== id));
+        return { ok: true };
+    };
+
+    const libraryBookIds = user
+        ? users.find((item) => item.id === user.id)?.libraryBookIds ?? []
+        : [];
+
+    const toggleLibraryBook = (bookId) => {
+        if (!user) return { ok: false, message: "Bu işlem için giriş yapmalısınız." };
+
+        setUsers((current) => current.map((item) => {
+            if (item.id !== user.id) return item;
+
+            const savedBooks = item.libraryBookIds ?? [];
+            return {
+                ...item,
+                libraryBookIds: savedBooks.includes(bookId)
+                    ? savedBooks.filter((id) => id !== bookId)
+                    : [...savedBooks, bookId],
+            };
+        }));
+
+        return { ok: true };
+    };
+
+    const updateProfile = ({ name, email, avatar, bio }) => {
+        if (!user) return { ok: false, message: "Bu işlem için giriş yapmalısınız." };
+
+        const normalizedName = name.trim();
+        const normalizedEmail = email.trim().toLowerCase();
+        if (!normalizedName || !normalizedEmail) {
+            return { ok: false, message: "Ad ve e-posta alanları zorunludur." };
+        }
+        if (users.some((item) => item.id !== user.id && item.email.toLowerCase() === normalizedEmail)) {
+            return { ok: false, message: "Bu e-posta başka bir hesapta kullanılıyor." };
+        }
+
+        const updatedUser = { ...user, name: normalizedName, email: normalizedEmail, avatar, bio: bio.trim() };
+        setUsers((current) => current.map((item) => item.id === user.id ? { ...item, ...updatedUser } : item));
+        persistSession(updatedUser);
+        return { ok: true };
+    };
+
+    const value = { users, user, libraryBookIds, login, register, resetPassword, removeUser, toggleLibraryBook, updateProfile, logout: () => persistSession(null) };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

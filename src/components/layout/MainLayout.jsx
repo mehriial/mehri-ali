@@ -6,7 +6,7 @@ const MainLayout = () => {
     const year = new Date().getFullYear();
 
     return (
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col bg-background">
             <Header />
 
             <main className="flex-1 pt-[80px]">

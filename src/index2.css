@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-header-bg: #f7f0e6;
+  --color-header-text: #2e211d;
+  --color-header-accent: #a84f32;
+  --color-shadow-white: #4e4038;
+  --color-background: var(--bg);
+}
+
+:root {
+  --text: #5b4a42;
+  --white-smoke: #8d766a;
+  --background: #f7f0e6;
+  --text-h: #2e211d;
+  --bg: #f7f0e6;
+  --border: #dacbbd;
+  --code-bg: #efe4d6;
+  --accent: #a84f32;
+  --accent-bg: rgba(168, 79, 50, 0.1);
+  --accent-border: rgba(168, 79, 50, 0.5);
+  --social-bg: rgba(255, 250, 244, 0.7);
+  --shadow:
+          rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+          rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@layer base {
+  body {
+    @apply min-h-svh w-full bg-background;
+    background-image: radial-gradient(circle at 5% 0%, rgba(168, 79, 50, 0.11), transparent 24rem), radial-gradient(circle at 95% 22%, rgba(199, 157, 110, 0.16), transparent 28rem);
+    color: var(--text-h);
+  }
+
+  ::selection { background: #a84f32; color: #fffaf4; }
+}
+
+@layer components {
+  .adminInput {
+    @apply h-12 w-full border border-[#d9c8b8] bg-[#fffaf4] px-4 text-sm text-shadow-white outline-none transition-colors placeholder:text-shadow-white/40 focus:border-header-accent;
+  }
+
+  .adminTextarea {
+    @apply w-full resize-none border border-[#d9c8b8] bg-[#fffaf4] px-4 py-3 text-sm leading-7 text-shadow-white outline-none placeholder:text-shadow-white/40 focus:border-header-accent;
+  }
+
+  .sectionLabel {
+    @apply text-[9px] uppercase tracking-[0.3em] text-header-accent;
+  }
+
+  .fieldLabel {
+    @apply mb-2 block text-[9px] uppercase tracking-[0.2em] text-shadow-white/40;
+  }
+
+  .iconButton {
+    @apply flex h-9 w-9 items-center justify-center border border-white/10 text-shadow-white/40 transition-colors hover:border-header-accent hover:text-header-accent;
+  }
+
+  .actionButton {
+    @apply flex h-9 w-9 items-center justify-center border border-white/10 text-shadow-white/50 transition-colors hover:border-header-accent hover:text-header-accent;
+  }
+
+  .primaryButton {
+    @apply inline-flex items-center justify-center gap-2 border border-header-accent px-5 py-3 text-[9px] uppercase tracking-[0.2em] text-header-accent transition-all hover:bg-header-accent hover:text-white;
+  }
+}
