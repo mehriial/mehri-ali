@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu } from "lucide-react";
 
@@ -16,8 +17,20 @@ function MobileMenu({
                         onLogin,
                         onRegister,
                     }) {
+    const [open, setOpen] = useState(false);
+
+    const handleLogin = () => {
+        setOpen(false);
+        onLogin();
+    };
+
+    const handleRegister = () => {
+        setOpen(false);
+        onRegister();
+    };
+
     return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
                 <button
                     type="button"
@@ -85,7 +98,6 @@ function MobileMenu({
                             sm:px-8
                         "
                     >
-
                         {/* Navigation */}
                         <div>
                             <p
@@ -107,6 +119,7 @@ function MobileMenu({
                                         key={item.path}
                                         item={item}
                                         index={index}
+                                        onNavigate={() => setOpen(false)}
                                     />
                                 ))}
                             </nav>
@@ -114,10 +127,9 @@ function MobileMenu({
 
                         {/* Auth */}
                         <MobileAuth
-                            onLogin={onLogin}
-                            onRegister={onRegister}
+                            onLogin={handleLogin}
+                            onRegister={handleRegister}
                         />
-
                     </div>
                 </div>
             </SheetContent>
@@ -128,28 +140,30 @@ function MobileMenu({
 function MobileNavigationItem({
                                   item,
                                   index,
+                                  onNavigate,
                               }) {
     return (
         <NavLink
             to={item.path}
+            onClick={onNavigate}
             className={({ isActive }) =>
                 `
-                group
-                flex
-                items-center
-                justify-between
-                border-b
-                border-white/[0.07]
-                py-4
-                transition-all
-                duration-300
+group
+flex
+items-center
+justify-between
+border-b
+border-white/[0.07]
+py-4
+transition-all
+duration-300
 
-                ${
-                    isActive
-                        ? "text-white"
-                        : "text-white/50 hover:text-white"
-                }
-                `
+${
+    isActive
+        ? "text-white"
+        : "text-white/50 hover:text-white"
+}
+`
             }
         >
             {({ isActive }) => (
@@ -159,16 +173,16 @@ function MobileNavigationItem({
                         {/* Number */}
                         <span
                             className={`
-                                text-[9px]
-                                tabular-nums
-                                transition-colors
+text-[9px]
+tabular-nums
+transition-colors
 
-                                ${
-                                isActive
-                                    ? "text-white/60"
-                                    : "text-white/20 group-hover:text-white/40"
-                            }
-                            `}
+${
+    isActive
+        ? "text-white/60"
+        : "text-white/20 group-hover:text-white/40"
+}
+`}
                         >
                             {String(index + 1).padStart(2, "0")}
                         </span>
@@ -176,19 +190,19 @@ function MobileNavigationItem({
                         {/* Label */}
                         <span
                             className={`
-                                font-serif
-                                text-xl
-                                tracking-wide
-                                transition-transform
-                                duration-300
-                                sm:text-2xl
+font-serif
+text-xl
+tracking-wide
+transition-transform
+duration-300
+sm:text-2xl
 
-                                ${
-                                isActive
-                                    ? "translate-x-1"
-                                    : "group-hover:translate-x-1"
-                            }
-                            `}
+${
+    isActive
+        ? "translate-x-1"
+        : "group-hover:translate-x-1"
+}
+`}
                         >
                             {item.label}
                         </span>
@@ -198,18 +212,18 @@ function MobileNavigationItem({
                     {/* Active indicator */}
                     <span
                         className={`
-                            h-1.5
-                            w-1.5
-                            rounded-full
-                            transition-all
-                            duration-300
+h-1.5
+w-1.5
+rounded-full
+transition-all
+duration-300
 
-                            ${
-                            isActive
-                                ? "bg-white opacity-100"
-                                : "bg-white opacity-0 group-hover:opacity-40"
-                        }
-                        `}
+${
+    isActive
+        ? "bg-white opacity-100"
+        : "bg-white opacity-0 group-hover:opacity-40"
+}
+`}
                     />
                 </>
             )}

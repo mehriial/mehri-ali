@@ -8,7 +8,7 @@ import {
 import GalleryTabs from "./GalleryTabs.jsx";
 import GalleryFilters from "./GalleryFilters.jsx";
 import GalleryGrid from "./GalleryGrid.jsx";
-import EditComposer from "./EditComposer.jsx";
+import EditUploadDialog from "./EditUploadDialog.jsx";
 import GalleryEmpty from "./GalleryEmpty.jsx";
 
 const STORAGE_KEY = "galleryItems";
@@ -58,7 +58,11 @@ function Gallery() {
             .sort(() => Math.random() - 0.5);
     }, [items, activeTab, activeBook]);
 
-    const handleAddEdit = ({ image, bookSlug, title }) => {
+    const handleAddEdit = ({
+        image,
+        bookSlug,
+        title,
+    }) => {
         const newItem = {
             id: Date.now(),
             bookSlug,
@@ -88,29 +92,25 @@ function Gallery() {
             <section>
                 <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
 
-                    <div className="">
-                        <GalleryTabs
-                            activeTab={activeTab}
-                            onChange={setActiveTab}
-                        />
-                    </div>
+                    <GalleryTabs
+                        activeTab={activeTab}
+                        onChange={setActiveTab}
+                    />
 
-                    <div className="mt-8">
+                    <div className="mt-8 flex items-center justify-between gap-4">
                         <GalleryFilters
                             books={galleryBooks}
                             activeBook={activeBook}
                             onChange={setActiveBook}
                         />
-                    </div>
 
-                    {activeTab === "edits" && (
-                        <div className="mt-10">
-                            <EditComposer
+                        {activeTab === "edits" && (
+                            <EditUploadDialog
                                 books={galleryBooks}
                                 onSubmit={handleAddEdit}
                             />
-                        </div>
-                    )}
+                        )}
+                    </div>
 
                     <div className="mt-12">
                         {filteredItems.length > 0 ? (
@@ -119,9 +119,12 @@ function Gallery() {
                                 onDelete={handleDelete}
                             />
                         ) : (
-                            <GalleryEmpty type={activeTab} />
+                            <GalleryEmpty
+                                type={activeTab}
+                            />
                         )}
                     </div>
+
                 </div>
             </section>
         </div>

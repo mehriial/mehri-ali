@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import HeaderLogo from "./HeaderLogo.jsx";
 import DesktopNavigation from "./DesktopNavigation.jsx";
@@ -6,8 +7,9 @@ import HeaderActions from "./HeaderActions.jsx";
 import MobileMenu from "./MobileMenu.jsx";
 
 function Header() {
-    const [bookTheme, setBookTheme] = useState(null);
+    const location = useLocation();
 
+    const [bookTheme, setBookTheme] = useState(null);
     const [authView, setAuthView] = useState(null);
 
     useEffect(() => {
@@ -47,6 +49,11 @@ function Header() {
             );
         };
     }, []);
+
+    // Route dəyişəndə açıq auth modalını bağla
+    useEffect(() => {
+        setAuthView(null);
+    }, [location.pathname]);
 
     return (
         <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">

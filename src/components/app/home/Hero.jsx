@@ -19,7 +19,7 @@ function Hero() {
 
         const interval = setInterval(() => {
             setActiveIndex((current) => (current + 1) % totalBooks);
-        }, 3000);
+        }, 8000);
 
         return () => clearInterval(interval);
     }, [totalBooks]);
@@ -89,19 +89,10 @@ function Hero() {
                         </span>
                     </div>
 
-                    <span
-                        className="
-                            text-[9px] uppercase
-                            tracking-[0.25em]
-                            text-white/20
-                        "
-                    >
-                        Hikâyeler & Kitaplar
-                    </span>
                 </div>
 
                 {/* Carousel */}
-                <div className="flex flex-1 items-center justify-center py-14">
+                <div className="relative flex flex-1 items-center justify-center py-14">
                     <div
                         className="
                             grid w-full
@@ -230,10 +221,18 @@ function Hero() {
                         {/* Controls */}
                         <div
                             className="
-                                order-3 flex flex-col
-                                items-start
-                                lg:items-end
-                            "
+        absolute
+        right-5
+        top-[-20px]
+        z-10
+        flex
+        flex-col
+        items-end
+        sm:right-8
+        sm:top-8
+        lg:static
+        lg:order-3
+    "
                         >
                             <div className="flex items-center gap-2">
                                 <button
@@ -241,53 +240,67 @@ function Hero() {
                                     onClick={goToPrevious}
                                     aria-label="Önceki kitap"
                                     className="
-                                        flex h-10 w-10
-                                        items-center justify-center
-                                        border border-white/[0.1]
-                                        text-white/40
-                                        transition-all
-                                        hover:border-white/25
-                                        hover:text-white
-                                    "
+                flex
+                h-9
+                w-9
+                cursor-pointer
+                items-center
+                justify-center
+                border
+                border-white/[0.1]
+                text-white/40
+                transition-all
+                hover:border-white/25
+                hover:text-white
+                sm:h-10
+                sm:w-10
+            "
                                 >
                                     <ChevronLeft className="h-4 w-4"/>
                                 </button>
 
                                 <span
                                     className="
-                                        min-w-[55px]
-                                        text-center
-                                        text-[9px]
-                                        tabular-nums
-                                        tracking-[0.2em]
-                                        text-white/30
-                                    "
+                min-w-[50px]
+                text-center
+                text-[9px]
+                tabular-nums
+                tracking-[0.2em]
+                text-white/30
+            "
                                 >
-                                    {String(activeIndex + 1).padStart(2, "0")}
+            {String(activeIndex + 1).padStart(2, "0")}
                                     {" / "}
                                     {String(totalBooks).padStart(2, "0")}
-                                </span>
+        </span>
 
                                 <button
                                     type="button"
                                     onClick={goToNext}
                                     aria-label="Sonraki kitap"
                                     className="
-                                        flex h-10 w-10
-                                        items-center justify-center
-                                        border border-white/[0.1]
-                                        text-white/40
-                                        transition-all
-                                        hover:border-white/25
-                                        hover:text-white
-                                    "
+                flex
+                h-9
+                w-9
+                cursor-pointer
+                items-center
+                justify-center
+                border
+                border-white/[0.1]
+                text-white/40
+                transition-all
+                hover:border-white/25
+                hover:text-white
+                sm:h-10
+                sm:w-10
+            "
                                 >
                                     <ChevronRight className="h-4 w-4"/>
                                 </button>
                             </div>
 
                             {/* Indicators */}
-                            <div className="mt-5 flex gap-1.5">
+                            <div className="mt-4 flex gap-1.5">
                                 {books.map((book, index) => (
                                     <button
                                         key={book.id}
@@ -295,13 +308,16 @@ function Hero() {
                                         onClick={() => setActiveIndex(index)}
                                         aria-label={`${book.title} kitabına git`}
                                         className={`
-                                            h-1 transition-all duration-300
-                                            ${
+                    h-1
+                    cursor-pointer
+                    transition-all
+                    duration-300
+                    ${
                                             index === activeIndex
                                                 ? "w-8 bg-white"
                                                 : "w-2 bg-white/20 hover:bg-white/40"
                                         }
-                                        `}
+                `}
                                     />
                                 ))}
                             </div>
