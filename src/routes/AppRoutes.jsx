@@ -10,9 +10,7 @@ import Announcements from "@/pages/announcements/index.jsx";
 import Profile from "@/pages/profile/index.jsx";
 import AdminLayout from "@/components/layout/AdminLayout.jsx";
 import AdminDashboard from "@/pages/admin/dashboard/index.jsx";
-import AdminBooks from "@/pages/books/index.jsx";
-import AdminChapters from "@/pages/admin/chapters/index.jsx";
-import AdminGallery from "@/pages/admin/gallery/index.jsx";
+import BooksPage from "@/pages/admin/books/index.jsx";
 
 function AppRoutes() {
     return (
@@ -49,16 +47,7 @@ function AppRoutes() {
 
             <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
-
-                <Route path="books" element={<AdminBooks />} />
-                <Route
-                    path="chapters"
-                    element={<AdminChapters />}
-                />
-                <Route path="gallery" element={<AdminGallery />} />
-                {/*<Route path="categories" element={<Categories />} />*/}
-                {/*<Route path="comments" element={<Comments />} />*/}
-                {/*<Route path="settings" element={<Settings />} />*/}
+                <Route path='books' element={<BooksPage />} />
             </Route>
         </Routes>
     );
