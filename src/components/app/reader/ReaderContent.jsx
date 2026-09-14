@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import parse, { domToReact } from "html-react-parser";
 
 const fontMap = {
     Inter: "Inter, sans-serif",
@@ -31,6 +32,121 @@ function ReaderContent({
     const selectedBackground = isBlackBackground
         ? "rgba(255,255,255,.035)"
         : "rgba(0,0,0,.025)";
+
+    const renderContent = () => {
+        if (!chapter?.content) {
+            return null;
+        }
+
+        return parse(chapter.content, {
+            replace: (node) => {
+                if (node.type !== "tag" || node.name !== "p") {
+                    return undefined;
+                }
+
+                const paragraphIndex =
+                    renderContent.paragraphIndex++;
+
+                const isSelected =
+                    selectedParagraph === paragraphIndex;
+
+                return (
+                    <div
+                        key={`paragraph-${paragraphIndex}`}
+                        className="group relative"
+                    >
+                        <div
+                            className="
+                                relative
+                                rounded-md
+                                px-2
+                                py-1
+                                -mx-2
+                                transition-colors
+                            "
+                            style={{
+                                backgroundColor: isSelected
+                                    ? selectedBackground
+                                    : "transparent",
+                            }}
+                        >
+                            <p>
+                                {domToReact(node.children)}
+                            </p>
+
+                            {/* Desktop Comment Button */}
+                            <button
+                                type="button"
+                                aria-label={`Paragraf ${paragraphIndex + 1} yorumları`}
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    onParagraphClick(paragraphIndex);
+                                }}
+                                className="
+                                    absolute
+                                    -right-11
+                                    bottom-1
+                                    hidden
+                                    h-7
+                                    w-7
+                                    items-center
+                                    justify-center
+                                    rounded-full
+                                    border
+                                    transition-all
+                                    duration-200
+                                    hover:bg-white/5
+                                    sm:flex
+                                    opacity-0
+                                    group-hover:opacity-100
+                                "
+                                style={{
+                                    color: iconColor,
+                                    borderColor,
+                                }}
+                            >
+                                <MessageCircle className="h-3.5 w-3.5" />
+                            </button>
+
+                            {/* Mobile Comment Button */}
+                            <button
+                                type="button"
+                                aria-label={`Paragraf ${paragraphIndex + 1} yorumları`}
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    onParagraphClick(paragraphIndex);
+                                }}
+                                className="
+                                    mt-3
+                                    flex
+                                    h-7
+                                    items-center
+                                    gap-2
+                                    text-[9px]
+                                    sm:hidden
+                                "
+                                style={{
+                                    color: iconColor,
+                                }}
+                            >
+                                <MessageCircle className="h-3.5 w-3.5" />
+
+                                <span>
+                                    Yorumlar
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                );
+            },
+        });
+    };
+
+    /*
+     * html-react-parser her render'da tekrar çalışdığı üçün
+     * paragraph index'ini sıfırlayırıq.
+     */
+    renderContent.paragraphIndex = 0;
 
     return (
         <article
@@ -78,110 +194,29 @@ function ReaderContent({
 
             {/* Content */}
             <div
-                className="space-y-7 select-none"
-                onContextMenu={(event) => event.preventDefault()}
+                className="
+                    space-y-7
+                    select-none
+                "
+                onContextMenu={(event) =>
+                    event.preventDefault()
+                }
                 style={{
                     fontSize: `${settings.fontSize}px`,
                     lineHeight: 1.9,
                 }}
             >
-                {chapter.content?.map((paragraph, index) => {
-                    const isSelected =
-                        selectedParagraph === index;
-
-                    return (
-                        <div
-                            key={index}
-                            className="group relative"
-                        >
-                            <div
-                                className="
-                                    relative
-                                    cursor-pointer
-                                    rounded-md
-                                    px-2
-                                    py-1
-                                    -mx-2
-                                    transition-colors
-                                "
-                                style={{
-                                    backgroundColor:
-                                        isSelected
-                                            ? selectedBackground
-                                            : "transparent",
-                                }}
-                            >
-                                <p>{paragraph}</p>
-
-                                {/* Paragraph Comment */}
-                                <button
-                                    type="button"
-                                    aria-label={`Paragraf ${index + 1} yorumları`}
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                        onParagraphClick(index);
-                                    }}
-                                    className="
-                                        absolute
-                                        -right-11
-                                        bottom-1
-                                        hidden
-                                        h-7
-                                        w-7
-                                        items-center
-                                        justify-center
-                                        rounded-full
-                                        border
-                                        transition-all
-                                        duration-200
-                                        hover:bg-white/5
-                                        sm:flex
-                                        opacity-0
-                                        group-hover:opacity-100
-                                    "
-                                    style={{
-                                        color: iconColor,
-                                        borderColor,
-                                    }}
-                                >
-                                    <MessageCircle className="h-3.5 w-3.5" />
-                                </button>
-
-                                {/* Mobile Comment Button */}
-                                <button
-                                    type="button"
-                                    aria-label={`Paragraf ${index + 1} yorumları`}
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                        onParagraphClick(index);
-                                    }}
-                                    className="
-                                        mt-3
-                                        flex
-                                        h-7
-                                        items-center
-                                        gap-2
-                                        text-[9px]
-                                        sm:hidden
-                                    "
-                                    style={{
-                                        color: iconColor,
-                                    }}
-                                >
-                                    <MessageCircle className="h-3.5 w-3.5" />
-                                    <span>
-                                        Yorumlar
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    );
-                })}
+                {renderContent()}
             </div>
 
             {/* Chapter Comments */}
             <div
-                className="mt-20 border-t pt-10 sm:mt-24"
+                className="
+                    mt-20
+                    border-t
+                    pt-10
+                    sm:mt-24
+                "
                 style={{
                     borderColor,
                 }}
@@ -209,7 +244,15 @@ function ReaderContent({
                         color: mutedColor,
                     }}
                 >
-                    <MessageCircle className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />
+                    <MessageCircle
+                        className="
+                            h-3.5
+                            w-3.5
+                            transition-transform
+                            duration-300
+                            group-hover:scale-110
+                        "
+                    />
 
                     <span>
                         Bölüm yorumları

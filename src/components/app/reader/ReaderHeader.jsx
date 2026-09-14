@@ -29,6 +29,8 @@ function ReaderHeader({
                     z-30
                     border-y
                     backdrop-blur-xl
+                    py-2
+                    text-white
                 "
                 style={{
                     backgroundColor:

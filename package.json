@@ -20,6 +20,7 @@
     "@tiptap/starter-kit": "^3.31.3",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.6",
+    "html-react-parser": "^6.1.7",
     "lucide-react": "^1.43.0",
     "mammoth": "^1.12.2",
     "react": "^19.2.8",

@@ -120,7 +120,7 @@ function Reader() {
                 color: readerText,
             }}
         >
-            <div className="pt-24">
+            <div className="pt-2">
                 <ReaderHeader
                     book={book}
                     chapter={currentChapter}

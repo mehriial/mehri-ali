@@ -25,11 +25,6 @@ function AppRoutes() {
                     element={<BookDetail />}
                 />
 
-                <Route
-                    path="/books/:slug/read/:chapter"
-                    element={<Reader />}
-                />
-
                 <Route path="/board" element={<Board />} />
 
                 <Route path="/gallery" element={<Gallery />} />
@@ -44,6 +39,11 @@ function AppRoutes() {
                     element={<Profile />}
                 />
             </Route>
+
+            <Route
+                path="/books/:slug/read/:chapter"
+                element={<Reader />}
+            />
 
             <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />

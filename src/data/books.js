@@ -27,44 +27,61 @@ export const books = [
                 number: 1,
                 title: "Başlangıç",
                 publishedAt: "12 Ağustos 2026",
-                content: [
-                    "Bazı hikâyeler bir kapının açılmasıyla başlamaz. Bazen yalnızca bir bakış yeterlidir.",
-                    "O gece şehir her zamankinden daha sessizdi. Sokak lambalarının solgun ışığı kaldırım taşlarına vuruyor, rüzgâr boş sokaklarda dolaşıyordu.",
-                    "Mehri, pencerenin önünde durmuş dışarıyı izliyordu. İçinde açıklayamadığı bir huzursuzluk vardı.",
-                    "Telefonunun ekranı bir kez daha yandı.",
-                    "Bilinmeyen Numara.",
-                    "Mesajı açmadan önce birkaç saniye bekledi. Sonunda parmağı ekrana dokundu.",
-                    "Bazı şeyleri öğrenmek için çok geç kaldın.",
-                    "Kalbi hızlandı.",
-                    "Mesajın altında başka hiçbir şey yoktu."
-                ],
+                content: `
+            <p>Bazı hikâyeler bir kapının açılmasıyla başlamaz. Bazen yalnızca bir bakış yeterlidir.</p>
+
+            <p>O gece şehir her zamankinden daha sessizdi. Sokak lambalarının solgun ışığı kaldırım taşlarına vuruyor, rüzgâr boş sokaklarda dolaşıyordu.</p>
+
+            <p>Mehri, pencerenin önünde durmuş dışarıyı izliyordu. İçinde açıklayamadığı bir huzursuzluk vardı.</p>
+
+            <p>Telefonunun ekranı bir kez daha yandı.</p>
+
+            <p><strong>Bilinmeyen Numara.</strong></p>
+
+            <p>Mesajı açmadan önce birkaç saniye bekledi. Sonunda parmağı ekrana dokundu.</p>
+
+            <p>Bazı şeyleri öğrenmek için çok geç kaldın.</p>
+
+            <p>Kalbi hızlandı.</p>
+
+            <p>Mesajın altında başka hiçbir şey yoktu.</p>
+        `,
             },
             {
                 id: 2,
                 number: 2,
                 title: "İlk İz",
                 publishedAt: "19 Ağustos 2026",
-                content: [
-                    "Ertesi sabah şehir aynı görünüyordu.",
-                    "Ama Mehri için hiçbir şey aynı değildi.",
-                    "Gece boyunca gelen mesajı düşünmüş, kelimelerin ardında ne saklandığını anlamaya çalışmıştı.",
-                    "Masasının üzerinde duran eski fotoğraf gözüne ilişti.",
-                    "Fotoğrafı eline aldığında arkasında daha önce fark etmediği bir tarih gördü.",
-                    "28 Ekim.",
-                    "Bu yalnızca bir tesadüf olamazdı."
-                ],
+                content: `
+            <p>Ertesi sabah şehir aynı görünüyordu.</p>
+
+            <p>Ama Mehri için hiçbir şey aynı değildi.</p>
+
+            <p>Gece boyunca gelen mesajı düşünmüş, kelimelerin ardında ne saklandığını anlamaya çalışmıştı.</p>
+
+            <p>Masasının üzerinde duran eski fotoğraf gözüne ilişti.</p>
+
+            <p>Fotoğrafı eline aldığında arkasında daha önce fark etmediği bir tarih gördü.</p>
+
+            <p><strong>28 Ekim.</strong></p>
+
+            <p>Bu yalnızca bir tesadüf olamazdı.</p>
+        `,
             },
             {
                 id: 3,
                 number: 3,
                 title: "Sessiz Tanık",
                 publishedAt: "26 Ağustos 2026",
-                content: [
-                    "Kapının önünde duran adam tek kelime etmedi.",
-                    "Sadece elindeki dosyayı uzattı.",
-                    "Mehri dosyayı açtığında ilk sayfada kendi adını gördü.",
-                    "O anda geçmişin sandığından çok daha yakın olduğunu anladı."
-                ],
+                content: `
+            <p>Kapının önünde duran adam tek kelime etmedi.</p>
+
+            <p>Sadece elindeki dosyayı uzattı.</p>
+
+            <p>Mehri dosyayı açtığında ilk sayfada kendi adını gördü.</p>
+
+            <p>O anda geçmişin sandığından çok daha yakın olduğunu anladı.</p>
+        `,
             },
         ],
         characters: [
@@ -174,44 +191,61 @@ export const books = [
                 number: 1,
                 title: "Başlangıç",
                 publishedAt: "12 Ağustos 2026",
-                content: [
-                    "Bazı hikâyeler bir kapının açılmasıyla başlamaz. Bazen yalnızca bir bakış yeterlidir.",
-                    "O gece şehir her zamankinden daha sessizdi. Sokak lambalarının solgun ışığı kaldırım taşlarına vuruyor, rüzgâr boş sokaklarda dolaşıyordu.",
-                    "Mehri, pencerenin önünde durmuş dışarıyı izliyordu. İçinde açıklayamadığı bir huzursuzluk vardı.",
-                    "Telefonunun ekranı bir kez daha yandı.",
-                    "Bilinmeyen Numara.",
-                    "Mesajı açmadan önce birkaç saniye bekledi. Sonunda parmağı ekrana dokundu.",
-                    "Bazı şeyleri öğrenmek için çok geç kaldın.",
-                    "Kalbi hızlandı.",
-                    "Mesajın altında başka hiçbir şey yoktu."
-                ],
+                content: `
+            <p>Bazı hikâyeler bir kapının açılmasıyla başlamaz. Bazen yalnızca bir bakış yeterlidir.</p>
+
+            <p>O gece şehir her zamankinden daha sessizdi. Sokak lambalarının solgun ışığı kaldırım taşlarına vuruyor, rüzgâr boş sokaklarda dolaşıyordu.</p>
+
+            <p>Mehri, pencerenin önünde durmuş dışarıyı izliyordu. İçinde açıklayamadığı bir huzursuzluk vardı.</p>
+
+            <p>Telefonunun ekranı bir kez daha yandı.</p>
+
+            <p><strong>Bilinmeyen Numara.</strong></p>
+
+            <p>Mesajı açmadan önce birkaç saniye bekledi. Sonunda parmağı ekrana dokundu.</p>
+
+            <p>Bazı şeyleri öğrenmek için çok geç kaldın.</p>
+
+            <p>Kalbi hızlandı.</p>
+
+            <p>Mesajın altında başka hiçbir şey yoktu.</p>
+        `,
             },
             {
                 id: 2,
                 number: 2,
                 title: "İlk İz",
                 publishedAt: "19 Ağustos 2026",
-                content: [
-                    "Ertesi sabah şehir aynı görünüyordu.",
-                    "Ama Mehri için hiçbir şey aynı değildi.",
-                    "Gece boyunca gelen mesajı düşünmüş, kelimelerin ardında ne saklandığını anlamaya çalışmıştı.",
-                    "Masasının üzerinde duran eski fotoğraf gözüne ilişti.",
-                    "Fotoğrafı eline aldığında arkasında daha önce fark etmediği bir tarih gördü.",
-                    "28 Ekim.",
-                    "Bu yalnızca bir tesadüf olamazdı."
-                ],
+                content: `
+            <p>Ertesi sabah şehir aynı görünüyordu.</p>
+
+            <p>Ama Mehri için hiçbir şey aynı değildi.</p>
+
+            <p>Gece boyunca gelen mesajı düşünmüş, kelimelerin ardında ne saklandığını anlamaya çalışmıştı.</p>
+
+            <p>Masasının üzerinde duran eski fotoğraf gözüne ilişti.</p>
+
+            <p>Fotoğrafı eline aldığında arkasında daha önce fark etmediği bir tarih gördü.</p>
+
+            <p><strong>28 Ekim.</strong></p>
+
+            <p>Bu yalnızca bir tesadüf olamazdı.</p>
+        `,
             },
             {
                 id: 3,
                 number: 3,
                 title: "Sessiz Tanık",
                 publishedAt: "26 Ağustos 2026",
-                content: [
-                    "Kapının önünde duran adam tek kelime etmedi.",
-                    "Sadece elindeki dosyayı uzattı.",
-                    "Mehri dosyayı açtığında ilk sayfada kendi adını gördü.",
-                    "O anda geçmişin sandığından çok daha yakın olduğunu anladı."
-                ],
+                content: `
+            <p>Kapının önünde duran adam tek kelime etmedi.</p>
+
+            <p>Sadece elindeki dosyayı uzattı.</p>
+
+            <p>Mehri dosyayı açtığında ilk sayfada kendi adını gördü.</p>
+
+            <p>O anda geçmişin sandığından çok daha yakın olduğunu anladı.</p>
+        `,
             },
         ],
         characters: [
@@ -295,44 +329,61 @@ export const books = [
                 number: 1,
                 title: "Başlangıç",
                 publishedAt: "12 Ağustos 2026",
-                content: [
-                    "Bazı hikâyeler bir kapının açılmasıyla başlamaz. Bazen yalnızca bir bakış yeterlidir.",
-                    "O gece şehir her zamankinden daha sessizdi. Sokak lambalarının solgun ışığı kaldırım taşlarına vuruyor, rüzgâr boş sokaklarda dolaşıyordu.",
-                    "Mehri, pencerenin önünde durmuş dışarıyı izliyordu. İçinde açıklayamadığı bir huzursuzluk vardı.",
-                    "Telefonunun ekranı bir kez daha yandı.",
-                    "Bilinmeyen Numara.",
-                    "Mesajı açmadan önce birkaç saniye bekledi. Sonunda parmağı ekrana dokundu.",
-                    "Bazı şeyleri öğrenmek için çok geç kaldın.",
-                    "Kalbi hızlandı.",
-                    "Mesajın altında başka hiçbir şey yoktu."
-                ],
+                content: `
+            <p>Bazı hikâyeler bir kapının açılmasıyla başlamaz. Bazen yalnızca bir bakış yeterlidir.</p>
+
+            <p>O gece şehir her zamankinden daha sessizdi. Sokak lambalarının solgun ışığı kaldırım taşlarına vuruyor, rüzgâr boş sokaklarda dolaşıyordu.</p>
+
+            <p>Mehri, pencerenin önünde durmuş dışarıyı izliyordu. İçinde açıklayamadığı bir huzursuzluk vardı.</p>
+
+            <p>Telefonunun ekranı bir kez daha yandı.</p>
+
+            <p><strong>Bilinmeyen Numara.</strong></p>
+
+            <p>Mesajı açmadan önce birkaç saniye bekledi. Sonunda parmağı ekrana dokundu.</p>
+
+            <p>Bazı şeyleri öğrenmek için çok geç kaldın.</p>
+
+            <p>Kalbi hızlandı.</p>
+
+            <p>Mesajın altında başka hiçbir şey yoktu.</p>
+        `,
             },
             {
                 id: 2,
                 number: 2,
                 title: "İlk İz",
                 publishedAt: "19 Ağustos 2026",
-                content: [
-                    "Ertesi sabah şehir aynı görünüyordu.",
-                    "Ama Mehri için hiçbir şey aynı değildi.",
-                    "Gece boyunca gelen mesajı düşünmüş, kelimelerin ardında ne saklandığını anlamaya çalışmıştı.",
-                    "Masasının üzerinde duran eski fotoğraf gözüne ilişti.",
-                    "Fotoğrafı eline aldığında arkasında daha önce fark etmediği bir tarih gördü.",
-                    "28 Ekim.",
-                    "Bu yalnızca bir tesadüf olamazdı."
-                ],
+                content: `
+            <p>Ertesi sabah şehir aynı görünüyordu.</p>
+
+            <p>Ama Mehri için hiçbir şey aynı değildi.</p>
+
+            <p>Gece boyunca gelen mesajı düşünmüş, kelimelerin ardında ne saklandığını anlamaya çalışmıştı.</p>
+
+            <p>Masasının üzerinde duran eski fotoğraf gözüne ilişti.</p>
+
+            <p>Fotoğrafı eline aldığında arkasında daha önce fark etmediği bir tarih gördü.</p>
+
+            <p><strong>28 Ekim.</strong></p>
+
+            <p>Bu yalnızca bir tesadüf olamazdı.</p>
+        `,
             },
             {
                 id: 3,
                 number: 3,
                 title: "Sessiz Tanık",
                 publishedAt: "26 Ağustos 2026",
-                content: [
-                    "Kapının önünde duran adam tek kelime etmedi.",
-                    "Sadece elindeki dosyayı uzattı.",
-                    "Mehri dosyayı açtığında ilk sayfada kendi adını gördü.",
-                    "O anda geçmişin sandığından çok daha yakın olduğunu anladı."
-                ],
+                content: `
+            <p>Kapının önünde duran adam tek kelime etmedi.</p>
+
+            <p>Sadece elindeki dosyayı uzattı.</p>
+
+            <p>Mehri dosyayı açtığında ilk sayfada kendi adını gördü.</p>
+
+            <p>O anda geçmişin sandığından çok daha yakın olduğunu anladı.</p>
+        `,
             },
         ],
         characters: [
