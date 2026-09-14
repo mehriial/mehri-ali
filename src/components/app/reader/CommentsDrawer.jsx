@@ -400,10 +400,6 @@ function CommentsDrawer({
                         </button>
                     </div>
 
-                    <p className="mt-2 px-1 text-[9px] text-white/25">
-                        Enter ile gönder · Shift + Enter ile yeni
-                        satır
-                    </p>
                 </div>
             </aside>
         </>
