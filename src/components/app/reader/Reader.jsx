@@ -105,7 +105,7 @@ function Reader() {
         settings.background === "white"
             ? "#171717"
             : settings.background === "black"
-                ? "#e8e8e8"
+                ? "#ffffff"
                 : "#29251f";
 
     return (
@@ -114,7 +114,7 @@ function Reader() {
             style={{
                 "--book-bg": book.theme?.background ?? "#080808",
                 "--book-accent": book.theme?.accent ?? "#ffffff",
-                "--book-muted": book.theme?.muted ?? "#999999",
+                "--book-muted": book.theme?.muted ?? "#dcdcdc",
 
                 backgroundColor: readerBackground,
                 color: readerText,
