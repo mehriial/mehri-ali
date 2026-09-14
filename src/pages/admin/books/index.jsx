@@ -1,4 +1,4 @@
-import Books from "@/components/App/admin/books/Books.jsx";
+import Books from "@/components/app/admin/books/Books.jsx";
 
 function BooksPage() {
     return <Books />;
