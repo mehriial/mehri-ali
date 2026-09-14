@@ -1,4 +1,4 @@
-import Chapters from "@/components/admin/chapters/Chapters.jsx";
+import Chapters from "@/components/app/admin/chapters/Chapters.jsx";
 
 function AdminChapters() {
     return <Chapters />;

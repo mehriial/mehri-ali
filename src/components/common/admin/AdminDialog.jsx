@@ -24,7 +24,7 @@ function AdminDialog({
                     border-white/[0.08]
                     bg-[#0a0a0a]
                     text-white
-                    sm:max-w-[600px]
+                    sm:max-w-[800px]
                     ${className}
                 `}
             >

@@ -266,13 +266,13 @@ function BookDetailHero({book}) {
                                         py-3.5
                                         text-xs
                                         font-medium
-                                        text-black
                                         transition-all
                                         duration-300
                                     "
                                     style={{
                                         backgroundColor:
                                             "var(--book-accent)",
+                                        color: "var(--book-muted)"
                                     }}
                                 >
                                     <BookOpen className="h-4 w-4" />

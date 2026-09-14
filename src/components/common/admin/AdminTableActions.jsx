@@ -1,12 +1,21 @@
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import {
+    Eye,
+    Pencil,
+    ShieldBan,
+    ShieldCheck,
+    Trash2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button.jsx";
 
 function AdminTableActions({
                                onView,
                                onEdit,
+                               onStatus,
+                               onBlock,
                                onDelete,
                            }) {
+
     return (
         <div className="flex items-center justify-end gap-1">
             {onView && (
@@ -32,6 +41,56 @@ function AdminTableActions({
                     title="Düzenle"
                 >
                     <Pencil className="h-4 w-4" />
+                </Button>
+            )}
+
+            {onStatus && (
+                <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={onStatus.onClick}
+                    className={
+                        onStatus.status === "active"
+                            ? "h-8 w-8 cursor-pointer text-white/40 hover:bg-amber-500/10 hover:text-amber-400"
+                            : "h-8 w-8 cursor-pointer text-white/40 hover:bg-emerald-500/10 hover:text-emerald-400"
+                    }
+                    title={
+                        onStatus.status === "active"
+                            ? "Pasif yap"
+                            : "Aktif yap"
+                    }
+                >
+                    {onStatus.status === "active" ? (
+                        <ShieldBan className="h-4 w-4" />
+                    ) : (
+                        <ShieldCheck className="h-4 w-4" />
+                    )}
+                </Button>
+            )}
+
+            {onBlock && (
+                <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={onBlock.onClick}
+                    className={
+                        onBlock.blocked
+                            ? "h-8 w-8 cursor-pointer text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300"
+                            : "h-8 w-8 cursor-pointer text-white/40 hover:bg-red-500/10 hover:text-red-400"
+                    }
+                    title={
+                        onBlock.blocked
+                            ? "Engeli kaldır"
+                            : "Engelle"
+                    }
+                >
+                    {onBlock.blocked ? (
+                        <ShieldCheck className="h-4 w-4" />
+                    ) : (
+                        <ShieldBan className="h-4 w-4" />
+                    )}
                 </Button>
             )}
 

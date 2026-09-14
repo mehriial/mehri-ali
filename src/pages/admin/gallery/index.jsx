@@ -1,4 +1,4 @@
-import Gallery from "@/components/admin/gallery/Gallery.jsx";
+import Gallery from "@/components/app/admin/gallery/Gallery.jsx";
 
 function AdminGallery() {
     return <Gallery />;

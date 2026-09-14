@@ -11,6 +11,12 @@ import Profile from "@/pages/profile/index.jsx";
 import AdminLayout from "@/components/layout/AdminLayout.jsx";
 import AdminDashboard from "@/pages/admin/dashboard/index.jsx";
 import BooksPage from "@/pages/admin/books/index.jsx";
+import AdminChapters from "@/pages/admin/chapters/index.jsx";
+import AdminGallery from "@/pages/admin/gallery/index.jsx";
+import GalleryEditsPage from "@/pages/admin/gallery-edits/index.jsx";
+import BoardAdminPage from "@/pages/admin/board/index.jsx";
+import AnnouncementsAdminPage from "@/pages/admin/announcements/index.jsx";
+import UsersAdminPage from "@/pages/admin/users/index.jsx";
 
 function AppRoutes() {
     return (
@@ -48,6 +54,24 @@ function AppRoutes() {
             <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path='books' element={<BooksPage />} />
+                <Route path='chapters' element={<AdminChapters />} />
+                <Route path='gallery' element={<AdminGallery />} />
+                <Route
+                    path="gallery/edits"
+                    element={<GalleryEditsPage />}
+                />
+                <Route
+                    path="board"
+                    element={<BoardAdminPage />}
+                />
+                <Route
+                    path="announcements"
+                    element={<AnnouncementsAdminPage />}
+                />
+                <Route
+                    path="users"
+                    element={<UsersAdminPage />}
+                />
             </Route>
         </Routes>
     );

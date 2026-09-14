@@ -25,6 +25,7 @@ function BooksFilters({
                                 text-[11px]
                                 transition-all
                                 duration-300
+                                rounded-md
                                 ${
                                 isActive
                                     ? "border-white bg-white text-black"

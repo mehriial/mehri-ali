@@ -24,8 +24,19 @@ function Board() {
         }
     });
 
+    /*
+     * Gerçek projede bunu AuthContext / useAuth içinden
+     * almalısın.
+     *
+     * Hazırda admin test etmək üçün true/false edə bilərsən.
+     */
+    const isAdmin = true;
+
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(posts)
+        );
     }, [posts]);
 
     const visiblePosts = useMemo(() => {
@@ -38,7 +49,12 @@ function Board() {
         const newPost = {
             id: Date.now(),
             username: "Mehri",
-            type: image && text ? "text-image" : image ? "image" : "text",
+            type:
+                image && text
+                    ? "text-image"
+                    : image
+                        ? "image"
+                        : "text",
             text: text || "",
             image: image || null,
             status: image ? "pending" : "approved",
@@ -47,12 +63,17 @@ function Board() {
             comments: [],
         };
 
-        setPosts((current) => [newPost, ...current]);
+        setPosts((current) => [
+            newPost,
+            ...current,
+        ]);
     };
 
     const handleDeletePost = (postId) => {
         setPosts((current) =>
-            current.filter((post) => post.id !== postId)
+            current.filter(
+                (post) => post.id !== postId
+            )
         );
     };
 
@@ -74,7 +95,10 @@ function Board() {
         );
     };
 
-    const handleDeleteComment = (postId, commentId) => {
+    const handleDeleteComment = (
+        postId,
+        commentId
+    ) => {
         setPosts((current) =>
             current.map((post) => {
                 if (post.id !== postId) {
@@ -83,15 +107,22 @@ function Board() {
 
                 return {
                     ...post,
-                    comments: (post.comments ?? []).filter(
-                        (comment) => comment.id !== commentId
+                    comments: (
+                        post.comments ?? []
+                    ).filter(
+                        (comment) =>
+                            comment.id !== commentId
                     ),
                 };
             })
         );
     };
 
-    const handleAddReply = (postId, commentId, reply) => {
+    const handleAddReply = (
+        postId,
+        commentId,
+        reply
+    ) => {
         setPosts((current) =>
             current.map((post) => {
                 if (post.id !== postId) {
@@ -100,15 +131,21 @@ function Board() {
 
                 return {
                     ...post,
-                    comments: (post.comments ?? []).map((comment) => {
-                        if (comment.id !== commentId) {
+                    comments: (
+                        post.comments ?? []
+                    ).map((comment) => {
+                        if (
+                            comment.id !==
+                            commentId
+                        ) {
                             return comment;
                         }
 
                         return {
                             ...comment,
                             replies: [
-                                ...(comment.replies ?? []),
+                                ...(comment.replies ??
+                                    []),
                                 reply,
                             ],
                         };
@@ -125,22 +162,39 @@ function Board() {
                     <BoardHeader />
 
                     <div className="mt-12">
-                        <BoardComposer onSubmit={handleCreatePost} />
+                        <BoardComposer
+                            onSubmit={
+                                handleCreatePost
+                            }
+                        />
                     </div>
 
                     <div className="mt-12">
                         {visiblePosts.length > 0 ? (
                             <div className="divide-y divide-white/[0.07]">
-                                {visiblePosts.map((post) => (
-                                    <BoardPost
-                                        key={post.id}
-                                        post={post}
-                                        onDelete={handleDeletePost}
-                                        onAddComment={handleAddComment}
-                                        onDeleteComment={handleDeleteComment}
-                                        onAddReply={handleAddReply}
-                                    />
-                                ))}
+                                {visiblePosts.map(
+                                    (post) => (
+                                        <BoardPost
+                                            key={post.id}
+                                            post={post}
+                                            isAdmin={
+                                                isAdmin
+                                            }
+                                            onDelete={
+                                                handleDeletePost
+                                            }
+                                            onAddComment={
+                                                handleAddComment
+                                            }
+                                            onDeleteComment={
+                                                handleDeleteComment
+                                            }
+                                            onAddReply={
+                                                handleAddReply
+                                            }
+                                        />
+                                    )
+                                )}
                             </div>
                         ) : (
                             <BoardEmpty />

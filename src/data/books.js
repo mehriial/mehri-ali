@@ -143,7 +143,7 @@ export const books = [
         theme: {
             background: "#080808",
             accent: "#500209",
-            muted: "#999999",
+            muted: "#989898",
         },
     },
     {
