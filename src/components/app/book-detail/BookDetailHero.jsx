@@ -1,7 +1,97 @@
-import {ArrowUpRight, BookOpen, ChevronLeft} from "lucide-react";
-import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+    ArrowUpRight,
+    BookMarked,
+    BookOpen,
+    Check,
+    ChevronLeft,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
-function BookDetailHero({book}) {
+import { Button } from "@/components/ui/button.jsx";
+
+const LIBRARY_STORAGE_KEY = "userLibrary";
+
+function BookDetailHero({ book }) {
+    const [isInLibrary, setIsInLibrary] = useState(false);
+
+    useEffect(() => {
+        try {
+            const stored = localStorage.getItem(
+                LIBRARY_STORAGE_KEY
+            );
+
+            const library = stored
+                ? JSON.parse(stored)
+                : [];
+
+            setIsInLibrary(
+                library.some(
+                    (item) => item.slug === book.slug
+                )
+            );
+        } catch {
+            setIsInLibrary(false);
+        }
+    }, [book.slug]);
+
+    const handleLibraryToggle = () => {
+        try {
+            const stored = localStorage.getItem(
+                LIBRARY_STORAGE_KEY
+            );
+
+            const library = stored
+                ? JSON.parse(stored)
+                : [];
+
+            if (isInLibrary) {
+                const updatedLibrary = library.filter(
+                    (item) => item.slug !== book.slug
+                );
+
+                localStorage.setItem(
+                    LIBRARY_STORAGE_KEY,
+                    JSON.stringify(updatedLibrary)
+                );
+
+                setIsInLibrary(false);
+
+                window.dispatchEvent(
+                    new Event("libraryChanged")
+                );
+
+                return;
+            }
+
+            const libraryBook = {
+                id: book.id,
+                slug: book.slug,
+                title: book.title,
+                author: book.author,
+                image: book.image,
+            };
+
+            const updatedLibrary = [
+                ...library,
+                libraryBook,
+            ];
+
+            localStorage.setItem(
+                LIBRARY_STORAGE_KEY,
+                JSON.stringify(updatedLibrary)
+            );
+
+            setIsInLibrary(true);
+
+            window.dispatchEvent(
+                new Event("libraryChanged")
+            );
+        } catch {
+            // localStorage kullanılamadığında
+        }
+    };
+
     return (
         <section
             className="
@@ -197,7 +287,11 @@ function BookDetailHero({book}) {
                                                 <span className="h-px w-5 bg-white/15" />
 
                                                 <span className="text-[9px] text-white/25">
-                                                    Kitap {String(book.order).padStart(2, "0")}
+                                                    Kitap{" "}
+                                                    {String(book.order).padStart(
+                                                        2,
+                                                        "0"
+                                                    )}
                                                 </span>
                                             </>
                                         )}
@@ -244,6 +338,7 @@ function BookDetailHero({book}) {
                                         uppercase
                                         tracking-[0.2em]
                                         text-white/40
+                                        rounded-md
                                     "
                                 >
                                     {book.status}
@@ -254,25 +349,27 @@ function BookDetailHero({book}) {
                                 </span>
                             </div>
 
-                            <div className="mt-10">
+                            {/* Actions */}
+                            <div className="mt-10 flex flex-wrap items-center gap-3">
                                 <Link
                                     to={`/books/${book.slug}/read/1`}
                                     className="
                                         group
                                         inline-flex
+                                        h-11
                                         items-center
                                         gap-3
                                         px-5
-                                        py-3.5
                                         text-xs
                                         font-medium
                                         transition-all
                                         duration-300
+                                        rounded-md
                                     "
                                     style={{
                                         backgroundColor:
                                             "var(--book-accent)",
-                                        color: "var(--book-muted)"
+                                        color: "var(--book-muted)",
                                     }}
                                 >
                                     <BookOpen className="h-4 w-4" />
@@ -290,6 +387,48 @@ function BookDetailHero({book}) {
                                         "
                                     />
                                 </Link>
+
+                                <Button
+                                    type="button"
+                                    onClick={handleLibraryToggle}
+                                    variant="outline"
+                                    className="
+                                        h-11
+                                        gap-2.5
+                                        rounded-none
+                                        border-white/[0.10]
+                                        bg-white/[0.03]
+                                        px-5
+                                        text-xs
+                                        text-white/60
+                                        hover:bg-white/[0.06]
+                                        hover:text-white
+                                        rounded-md
+                                    "
+                                    style={
+                                        isInLibrary
+                                            ? {
+                                                borderColor:
+                                                    "color-mix(in srgb, var(--book-accent) 35%, transparent)",
+                                                backgroundColor:
+                                                    "color-mix(in srgb, var(--book-accent) 10%, transparent)",
+                                                color: "var(--book-accent)",
+                                            }
+                                            : undefined
+                                    }
+                                >
+                                    {isInLibrary ? (
+                                        <>
+                                            <Check className="h-4 w-4" />
+                                            Kütüphanede
+                                        </>
+                                    ) : (
+                                        <>
+                                            <BookMarked className="h-4 w-4" />
+                                            Kütüphaneye Ekle
+                                        </>
+                                    )}
+                                </Button>
                             </div>
                         </div>
                     </div>
