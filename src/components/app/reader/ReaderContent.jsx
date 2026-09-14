@@ -78,7 +78,8 @@ function ReaderContent({
 
             {/* Content */}
             <div
-                className="space-y-7"
+                className="space-y-7 select-none"
+                onContextMenu={(event) => event.preventDefault()}
                 style={{
                     fontSize: `${settings.fontSize}px`,
                     lineHeight: 1.9,
@@ -109,9 +110,6 @@ function ReaderContent({
                                             ? selectedBackground
                                             : "transparent",
                                 }}
-                                onClick={() =>
-                                    onParagraphClick(index)
-                                }
                             >
                                 <p>{paragraph}</p>
 
