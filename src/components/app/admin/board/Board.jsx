@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { MessageSquare } from "lucide-react";
 
-import AdminPageHeader from "@/components/Common/admin/AdminPageHeader.jsx";
-import AdminFilters from "@/components/Common/admin/AdminFilters.jsx";
-import AdminDialog from "@/components/Common/admin/AdminDialog.jsx";
-import AdminConfirmDialog from "@/components/Common/admin/AdminConfirmDialog.jsx";
+import AdminPageHeader from "@/components/common/admin/AdminPageHeader.jsx";
+import AdminFilters from "@/components/common/admin/AdminFilters.jsx";
+import AdminDialog from "@/components/common/admin/AdminDialog.jsx";
+import AdminConfirmDialog from "@/components/common/admin/AdminConfirmDialog.jsx";
 
 import BoardPostCard from "./BoardPostCard.jsx";
 

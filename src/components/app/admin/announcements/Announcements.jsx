@@ -10,12 +10,12 @@ import {
     initialAnnouncements,
 } from "@/data/announcements.js";
 
-import AdminPageHeader from "@/components/Common/admin/AdminPageHeader.jsx";
-import AdminFilters from "@/components/Common/admin/AdminFilters.jsx";
-import AdminTable from "@/components/Common/admin/AdminTable.jsx";
-import AdminTableActions from "@/components/Common/admin/AdminTableActions.jsx";
-import AdminDialog from "@/components/Common/admin/AdminDialog.jsx";
-import AdminConfirmDialog from "@/components/Common/admin/AdminConfirmDialog.jsx";
+import AdminPageHeader from "@/components/common/admin/AdminPageHeader.jsx";
+import AdminFilters from "@/components/common/admin/AdminFilters.jsx";
+import AdminTable from "@/components/common/admin/AdminTable.jsx";
+import AdminTableActions from "@/components/common/admin/AdminTableActions.jsx";
+import AdminDialog from "@/components/common/admin/AdminDialog.jsx";
+import AdminConfirmDialog from "@/components/common/admin/AdminConfirmDialog.jsx";
 
 import AnnouncementForm from "./AnnouncementForm.jsx";
 
