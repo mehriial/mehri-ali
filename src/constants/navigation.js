@@ -17,6 +17,6 @@ export const navigation = [
     },
     {
         label: "Duyurular",
-        path: "/announcements.js",
+        path: "/announcements",
     },
 ];

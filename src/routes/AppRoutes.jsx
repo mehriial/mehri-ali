@@ -35,7 +35,7 @@ function AppRoutes() {
                 <Route path="/gallery" element={<Gallery />} />
 
                 <Route
-                    path="/announcements.js"
+                    path="/announcements"
                     element={<Announcements />}
                 />
 
