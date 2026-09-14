@@ -17,6 +17,7 @@ import GalleryEditsPage from "@/pages/admin/gallery-edits/index.jsx";
 import BoardAdminPage from "@/pages/admin/board/index.jsx";
 import AnnouncementsAdminPage from "@/pages/admin/announcements/index.jsx";
 import UsersAdminPage from "@/pages/admin/users/index.jsx";
+import { AdminRoute, OwnProfileRoute } from "@/components/routes/PrivateRoute.jsx";
 
 function AppRoutes() {
     return (
@@ -40,10 +41,9 @@ function AppRoutes() {
                     element={<Announcements />}
                 />
 
-                <Route
-                    path="/profile/:username"
-                    element={<Profile />}
-                />
+                <Route path="/profile/:username" element={<OwnProfileRoute />}>
+                    <Route index element={<Profile />} />
+                </Route>
             </Route>
 
             <Route
@@ -51,6 +51,7 @@ function AppRoutes() {
                 element={<Reader />}
             />
 
+            <Route element={<AdminRoute />}>
             <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path='books' element={<BooksPage />} />
@@ -72,6 +73,7 @@ function AppRoutes() {
                     path="users"
                     element={<UsersAdminPage />}
                 />
+            </Route>
             </Route>
         </Routes>
     );

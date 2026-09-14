@@ -6,17 +6,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button.jsx";
 
 import ProfileEditDialog from "./ProfileEditDialog.jsx";
+import { getSession } from "@/lib/session.js";
+
+function initialProfile(profile) {
+    try {
+        const saved = JSON.parse(localStorage.getItem("profile"));
+        if (saved) return { ...profile, ...saved };
+    } catch { /* Invalid saved profile: use defaults. */ }
+    const user = getSession();
+    return user ? { ...profile, name: user.name || profile.name, username: user.username || profile.username } : profile;
+}
 
 
 function ProfileHeader({
                            profile,
-                           libraryCount,
                        }) {
     const [isEditOpen, setIsEditOpen] = useState(false);
 
-    const [currentProfile, setCurrentProfile] = useState(
-        profile
-    );
+    const [currentProfile, setCurrentProfile] = useState(() => initialProfile(profile));
 
 
     const handleSave = (updatedProfile) => {

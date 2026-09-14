@@ -1,16 +1,26 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 
 import HeaderLogo from "./HeaderLogo.jsx";
 import DesktopNavigation from "./DesktopNavigation.jsx";
 import HeaderActions from "./HeaderActions.jsx";
 import MobileMenu from "./MobileMenu.jsx";
+import { getSession } from "@/lib/session.js";
 
 function Header() {
-    const location = useLocation();
 
     const [bookTheme, setBookTheme] = useState(null);
     const [authView, setAuthView] = useState(null);
+    const [user, setUser] = useState(getSession);
+
+    useEffect(() => {
+        const update = () => setUser(getSession());
+        window.addEventListener("sessionChanged", update);
+        window.addEventListener("storage", update);
+        return () => {
+            window.removeEventListener("sessionChanged", update);
+            window.removeEventListener("storage", update);
+        };
+    }, []);
 
     useEffect(() => {
         const updateTheme = () => {
@@ -50,11 +60,6 @@ function Header() {
         };
     }, []);
 
-    // Route dəyişəndə açıq auth modalını bağla
-    useEffect(() => {
-        setAuthView(null);
-    }, [location.pathname]);
-
     return (
         <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
             <div className="mx-auto max-w-[1440px]">
@@ -87,11 +92,13 @@ function Header() {
                         <HeaderActions
                             authView={authView}
                             setAuthView={setAuthView}
+                            user={user}
                         />
 
                         <MobileMenu
                             onLogin={() => setAuthView("login")}
                             onRegister={() => setAuthView("register")}
+                            user={user}
                         />
                     </div>
                 </div>

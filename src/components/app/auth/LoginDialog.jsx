@@ -24,7 +24,7 @@ function LoginDialog({
                          onForgotPassword,
                          onLogin,
                      }) {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const [showPassword, setShowPassword] = useState(false);
@@ -36,8 +36,8 @@ function LoginDialog({
 
         setError("");
 
-        if (!email.trim()) {
-            setError("E-posta adresini gir.");
+        if (!username.trim()) {
+            setError("Kullanıcı adını gir.");
             return;
         }
 
@@ -50,16 +50,16 @@ function LoginDialog({
             setLoading(true);
 
             await onLogin({
-                email: email.trim(),
+                username: username.trim(),
                 password,
             });
 
-            setEmail("");
+            setUsername("");
             setPassword("");
         } catch (error) {
             setError(
                 error?.message ||
-                "E-posta veya şifre hatalı."
+                "Kullanıcı adı veya şifre hatalı."
             );
         } finally {
             setLoading(false);
@@ -113,10 +113,10 @@ function LoginDialog({
                 >
                     <div className="space-y-5">
 
-                        {/* E-posta */}
+                        {/* Kullanıcı adı */}
                         <div className="space-y-2">
                             <Label
-                                htmlFor="login-email"
+                                htmlFor="login-username"
                                 className="
                                     text-[9px]
                                     font-normal
@@ -125,18 +125,18 @@ function LoginDialog({
                                     text-white/30
                                 "
                             >
-                                E-posta
+                                Kullanıcı adı
                             </Label>
 
                             <Input
-                                id="login-email"
-                                type="email"
-                                value={email}
+                                id="login-username"
+                                type="text"
+                                value={username}
                                 onChange={(event) =>
-                                    setEmail(event.target.value)
+                                    setUsername(event.target.value)
                                 }
-                                placeholder="ornek@mail.com"
-                                autoComplete="email"
+                                placeholder="Kullanıcı adın"
+                                autoComplete="username"
                                 className="
                                     h-10
                                     rounded-lg

@@ -4,10 +4,13 @@ import LoginDialog from "@/components/app/auth/LoginDialog";
 import RegisterDialog from "@/components/app/auth/RegisterDialog";
 import ForgotPasswordDialog from "@/components/app/auth/ForgotPasswordDialog";
 import ResetPasswordDialog from "@/components/app/auth/ResetPasswordDialog";
+import ProfileMenu from "./ProfileMenu.jsx";
+import { setSession } from "@/lib/session.js";
 
 function HeaderActions({
                            authView,
                            setAuthView,
+                           user,
                        }) {
     const openLogin = () => {
         setAuthView("login");
@@ -22,14 +25,13 @@ function HeaderActions({
     };
 
     const handleLogin = async ({
-                                   email,
+                                   username,
                                    password,
                                }) => {
-        console.log("Login:", {
-            email,
-            password,
-        });
-
+        void password;
+        // The current project has no authentication API. Never infer admin
+        // privileges from a username entered into this demo form.
+        setSession({ username, name: username, role: "user" });
         setAuthView(null);
     };
 
@@ -39,20 +41,15 @@ function HeaderActions({
                                       email,
                                       password,
                                   }) => {
-        console.log("Register:", {
-            name,
-            username,
-            email,
-            password,
-        });
-
-        setAuthView("login");
+        void password;
+        setSession({ name, username, email, role: "user" });
+        setAuthView(null);
     };
 
     const handleForgotPassword = async ({
                                             email,
                                         }) => {
-        console.log("Forgot password:", email);
+        void email;
 
         setAuthView("reset-password");
     };
@@ -61,10 +58,8 @@ function HeaderActions({
                                            password,
                                            passwordConfirmation,
                                        }) => {
-        console.log("Reset password:", {
-            password,
-            passwordConfirmation,
-        });
+        void password;
+        void passwordConfirmation;
 
         setAuthView("login");
     };
@@ -96,7 +91,7 @@ function HeaderActions({
                 </button>
 
                 {/* Desktop Login */}
-                <button
+                {!user && <button
                     type="button"
                     onClick={openLogin}
                     className="
@@ -113,10 +108,10 @@ function HeaderActions({
                     "
                 >
                     Giriş Yap
-                </button>
+                </button>}
 
                 {/* Desktop Register */}
-                <button
+                {!user && <button
                     type="button"
                     onClick={openRegister}
                     className="
@@ -136,7 +131,8 @@ function HeaderActions({
                     "
                 >
                     Kayıt Ol
-                </button>
+                </button>}
+                {user && <ProfileMenu user={user} />}
             </div>
 
             <LoginDialog

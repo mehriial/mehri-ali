@@ -16,6 +16,7 @@ import { navigation } from "@/constants/navigation.js";
 function MobileMenu({
                         onLogin,
                         onRegister,
+                        user,
                     }) {
     const [open, setOpen] = useState(false);
 
@@ -126,10 +127,10 @@ function MobileMenu({
                         </div>
 
                         {/* Auth */}
-                        <MobileAuth
+                        {!user && <MobileAuth
                             onLogin={handleLogin}
                             onRegister={handleRegister}
-                        />
+                        />}
                     </div>
                 </div>
             </SheetContent>
